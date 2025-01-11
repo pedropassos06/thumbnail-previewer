@@ -1,28 +1,17 @@
 <template>
-  <div id="app" :style="gradientStyle">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <h1>Hello</h1>
+  <div id="app">
+    <LandingPage />
   </div>
 </template>
 
 <script>
+import LandingPage from './views/LandingPage.vue'
+
 export default {
-  data() {
-    return {
-      gradientStyle: {
-        background: 'linear-gradient(0deg, #D63B19 0%, #F77D25 52%, #E61862 100%)',
-        height: '100vh', // Optional: Make sure the gradient fills the entire viewport
-      },
-    };
+  name: 'AppVue',
+  components: {
+    LandingPage, 
   },
-};
+}
 </script>
 
-<style>
-/* Optional: Add styles for other elements */
-h1 {
-  color: white;
-  text-align: center;
-  margin-top: 20px;
-}
-</style>
