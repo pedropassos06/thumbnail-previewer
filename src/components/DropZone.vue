@@ -7,10 +7,11 @@
       @drop.prevent="onDrop"
     >
       <div class="drop-zone__content">
-        <img :src="icon" alt="Upload Icon" class="upload-icon" />
-        <p class="drop-zone-text">{{ text }}</p>
+        <img src="@/components/icons/import-icon.svg" alt="Upload Icon" class="upload-icon" />
+        <h3 class="drop-zone-header">{{ header }}</h3>
+        <p class="drop-zone-subheader">{{ subheader }}</p>
         <ActionButton
-          width="150px"
+          width="100px"
           height="40px"
           backgroundColor="#FF0000"
           textColor="#FFFFFF"
@@ -32,9 +33,13 @@ export default {
   props: {
     icon: {
       type: String,
-      required: true,
+      default: "@/components/icons/import-icon.svg",
     },
-    text: {
+    header: {
+      type: String,
+      default: "Drop file or browse",
+    },
+    subheader: {
       type: String,
       default: "Format: .jpeg, .png & Max file size: 2 MB",
     },
@@ -51,6 +56,16 @@ export default {
     return {
       isDragging: false,
     };
+  },
+  computed: {
+    resolvedIcon() {
+      try {
+        // Dynamically resolve the icon path at build time
+        return require(this.icon);
+      } catch {
+        return this.icon; // Fallback if the icon path is already valid
+      }
+    },
   },
   methods: {
     onDragOver() {
@@ -83,11 +98,17 @@ export default {
   text-align: center;
 }
 .upload-icon {
-  width: 50px;
-  height: 50px;
-  margin-bottom: 20px;
+  width: 25px;
+  height: 25px;
+  margin-bottom: 10px;
 }
-.drop-zone-text {
+
+.drop-zone-header {
+  color: #181D27;
+  font-weight: bold;
+}
+
+.drop-zone-subheader {
   color: #6C606C;
   margin-bottom: 20px;
 }
