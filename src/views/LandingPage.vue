@@ -23,7 +23,10 @@
 					<p class="upload-subheader">sure the file size is under 2 MB.</p>
 				</div>
 				<div class="drop-zone">
-					<input type="file" id="file" name="file" accept="image/png, image/jpeg" />
+					<DropZone
+						icon="@/components/icons/import-icon.svg"
+						text="Format: .jpeg, .png & Max file size: 2 MB"
+					/>
 				</div>
 				<div class="upload-buttons">
 					<ActionButton
@@ -51,10 +54,12 @@
 
 <script>
 import ActionButton from "@/components/ActionButton.vue";
+import DropZone from "@/components/DropZone.vue";
 
 export default {
 	components: {
 		ActionButton,
+		DropZone,
 	},
 };
 </script>
