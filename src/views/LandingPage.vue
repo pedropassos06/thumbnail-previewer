@@ -24,7 +24,6 @@
 				</div>
 				<div class="drop-zone">
 					<DropZone
-						icon="@/components/icons/import-icon.svg"
 						text="Format: .jpeg, .png & Max file size: 2 MB"
 					/>
 				</div>
