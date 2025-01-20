@@ -29,12 +29,10 @@
 					/>
 				</div>
 				<div v-else>
-					<ValidDropZone :files="files" />
+					<ValidDropZone :files="files" class="drop-zone" />
 				</div>
 				<div class="upload-buttons">
 					<ActionButton
-						width="120px"
-						height="40px"
 						backgroundColor="#FFFFFF"
 						textColor="#000000"
 						stroke="#E6E7EA"
@@ -42,8 +40,6 @@
 						Cancel
 					</ActionButton>
 					<ActionButton
-						width="120px"
-						height="40px"
 						backgroundColor="#FF0000"
 						textColor="#FFFFFF"
 					>
@@ -111,14 +107,14 @@ export default {
 	height: 600px;
 	width: 550px;
 	padding: 7%;
-	border-radius: 22.5px;
+	border-radius: 2%;
 	stroke: #E6E7EA;
 	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.10);
 }
 
 .upload-header {
 	color: #181D27;
-	font-size: 25px;
+	font-size: 1.5rem;
 	font-weight: bold;
 }
 
@@ -130,25 +126,25 @@ export default {
 .header-section {
 	display: flex;
 	flex-direction: column;
-	gap: 25px;
+	gap: 1.2rem;
 }
 
 .header-text {
-	font-size: 112.4px;
+	font-size: 7rem;
 	line-height: 85.5%;
 	letter-spacing: -0.06em; /* -5% letter spacing */
 	font-weight: bold;
 }
 
 .subheader-text {
-	font-size: 25px;
+	font-size: 1.6rem;
 	line-height: 118.5%;
 	letter-spacing: -0.02em;
 	font-weight: medium;
 }
 
 .footer-text {
-	font-size: 25px;
+	font-size: 1.6rem;
 	line-height: 118.5%;
 	letter-spacing: -0.05em;
 	font-weight: bold;
@@ -157,7 +153,7 @@ export default {
 .upload-buttons {
 	display: flex;
 	justify-content: space-between;
-	gap: 20px;
+	gap: 1.8rem;
 }
 
 .drop-zone {
