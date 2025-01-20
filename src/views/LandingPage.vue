@@ -22,10 +22,14 @@
 					<p class="upload-subheader">Please upload file in .jpeg or .png format and make</p>
 					<p class="upload-subheader">sure the file size is under 2 MB.</p>
 				</div>
-				<div class="drop-zone">
+				<div v-if="!files.length" class="drop-zone">
 					<DropZone
+						@files-dropped="handleFilesDropped"
 						text="Format: .jpeg, .png & Max file size: 2 MB"
 					/>
+				</div>
+				<div v-else>
+					<ValidDropZone :files="files" />
 				</div>
 				<div class="upload-buttons">
 					<ActionButton
@@ -54,11 +58,23 @@
 <script>
 import ActionButton from "@/components/ActionButton.vue";
 import DropZone from "@/components/DropZone.vue";
+import ValidDropZone from "@/components/ValidDropZone.vue";
 
 export default {
 	components: {
 		ActionButton,
 		DropZone,
+		ValidDropZone,
+	},
+	data() {
+		return {
+			files: [],
+		};
+	},
+	methods: {
+		handleFilesDropped(files) {
+			this.files = files;
+		},
 	},
 };
 </script>
@@ -90,6 +106,7 @@ export default {
 	display: flex;
 	flex-direction: column;
 	justify-content: space-between;
+	gap: 20px;
 	background: white;
 	height: 600px;
 	width: 550px;
@@ -141,5 +158,12 @@ export default {
 	display: flex;
 	justify-content: space-between;
 	gap: 20px;
+}
+
+.drop-zone {
+	flex-grow: 1;
+	display: flex;
+	align-items: center;
+	justify-content: center;
 }
 </style>

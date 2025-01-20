@@ -7,65 +7,24 @@
 		@drop.prevent="onDrop"
 	>
 		<div class="drop-zone__content">
-		<img src="@/components/icons/import-icon.svg" alt="Upload Icon" class="upload-icon" />
-		<h3 class="drop-zone-header">{{ header }}</h3>
 		<p class="drop-zone-subheader">{{ subheader }}</p>
-		<ActionButton
-			width="100px"
-			height="40px"
-			backgroundColor="#FF0000"
-			textColor="#FFFFFF"
-		>
-			{{ buttonText }}
-		</ActionButton>
 		</div>
 	</div>
 </template>
 
 <script>
-import ActionButton from "@/components/ActionButton.vue";
-
 export default {
-  name: "DropZone",
-  components: {
-    ActionButton,
-  },
+  name: "ValidDropZone",
   props: {
-    icon: {
-      type: String,
-      default: "@/components/icons/import-icon.svg",
-    },
-    header: {
-      type: String,
-      default: "Drop file or browse",
-    },
     subheader: {
       type: String,
-      default: "Format: .jpeg, .png & Max file size: 2 MB",
-    },
-    buttonText: {
-      type: String,
-      default: "Browse Files",
-    },
-    showButton: {
-      type: Boolean,
-      default: true,
+      default: "Click done or browse again",
     },
   },
   data() {
     return {
       isDragging: false,
     };
-  },
-  computed: {
-    resolvedIcon() {
-      try {
-        // Dynamically resolve the icon path at build time
-        return require(this.icon);
-      } catch {
-        return this.icon; // Fallback if the icon path is already valid
-      }
-    },
   },
   methods: {
     onDragOver() {
@@ -92,13 +51,13 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 1px dashed #FF0000;
-  background-color: #FDF6FE;
+  border: 1px dashed #14AE5C;
+  background-color: #F7FEF6;
   border-radius: 10px;
-  height: 100%;
-  width: 100%;
+  padding: 20%;
   text-align: center;
 }
+
 .upload-icon {
   width: 25px;
   height: 25px;
