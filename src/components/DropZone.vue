@@ -92,9 +92,10 @@ export default {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  border: 2px dashed #E6E7EA;
+  border: 1px dashed #FF0000;
+  background-color: #FDF6FE;
   border-radius: 10px;
-  padding: 20px;
+  padding: 80px;
   text-align: center;
 }
 .upload-icon {
