@@ -7,100 +7,83 @@
 		@drop.prevent="onDrop"
 	>
 		<div class="drop-zone__content">
-		<p class="drop-zone-subheader">{{ subheader }}</p>
+            <UploadedImageCard :fileName="files[0].name" />
+		    <p class="drop-zone-subheader">Click done or <a class="hyperlink">browse again</a></p>
 		</div>
 	</div>
 </template>
 
 <script>
+import UploadedImageCard from './UploadedImageCard.vue';
+
 export default {
-  name: "ValidDropZone",
-  props: {
-    subheader: {
-      type: String,
-      default: "Click done or browse again",
+    name: "ValidDropZone",
+    data() {
+        return {
+            isDragging: false,
+        };
     },
-  },
-  data() {
-    return {
-      isDragging: false,
-    };
-  },
-  methods: {
-    onDragOver() {
-      this.isDragging = true;
+    props: {
+        files: {
+            type: Array,
+            required: true,
+        },
     },
-    onDragLeave() {
-      this.isDragging = false;
+    components: {   
+        UploadedImageCard,
     },
-    onDrop(event) {
-      this.isDragging = false;
-      const files = event.dataTransfer.files;
-      this.$emit("files-dropped", files);
+    methods: {
+        onDragOver() {
+            this.isDragging = true;
+        },
+        onDragLeave() {
+            this.isDragging = false;
+        },
+        onDrop(event) {
+            this.isDragging = false;
+            const reuploadedFiles = event.dataTransfer.files;
+            this.$emit("files-dropped", reuploadedFiles);
+        },
+        onButtonClick() {
+            this.$emit("button-clicked");
+        },
     },
-    onButtonClick() {
-      this.$emit("button-clicked");
-    },
-  },
 };
 </script>
 
 <style scoped>
 .drop-zone {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  border: 1px dashed #14AE5C;
-  background-color: #F7FEF6;
-  border-radius: 10px;
-  padding: 20%;
-  text-align: center;
-}
-
-.upload-icon {
-  width: 25px;
-  height: 25px;
-  margin-bottom: 10px;
-}
-
-.drop-zone-header {
-  color: #181D27;
-  font-weight: bold;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 1px dashed #14AE5C;
+    background-color: #F7FEF6;
+    border-radius: 10px;
+    text-align: center;
 }
 
 .drop-zone-subheader {
-  color: #6C606C;
-  margin-bottom: 20px;
+    color: #6C606C;
+    margin-bottom: 20px;
 }
+
+.hyperlink {
+    color: #FF0000;
+    text-decoration: underline;
+}
+
 .drop-zone--drag-over {
-  border-color: #007bff;
-  background-color: #e6f7ff;
+    border-color: #007bff;
+    background-color: #e6f7ff;
 }
+
 .drop-zone__content {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-.drop-zone__icon {
-  width: 40px;
-  height: 40px;
-  margin-bottom: 10px;
-}
-.drop-zone__text {
-  font-size: 16px;
-  color: #333333;
-  margin-bottom: 10px;
-}
-.drop-zone__button {
-  background-color: #007bff;
-  color: white;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-}
-.drop-zone__button:hover {
-  background-color: #0056b3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #6C606C;
+    height: 90%;
+    width: 100%;
 }
 </style>
