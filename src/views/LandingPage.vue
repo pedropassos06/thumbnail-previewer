@@ -19,7 +19,7 @@
 			<div class="upload-section">
 				<div class="upload-main-header">
 					<h3 class="upload-header">Upload Thumbnail</h3>
-					<p class="upload-subheader">Please upload file in jpeg or png format and make</p>
+					<p class="upload-subheader">Please upload file in .jpeg or .png format and make</p>
 					<p class="upload-subheader">sure the file size is under 2 MB.</p>
 				</div>
 				<div class="drop-zone">
