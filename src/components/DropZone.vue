@@ -57,16 +57,6 @@ export default {
       isDragging: false,
     };
   },
-  computed: {
-    resolvedIcon() {
-      try {
-        // Dynamically resolve the icon path at build time
-        return require(this.icon);
-      } catch {
-        return this.icon; // Fallback if the icon path is already valid
-      }
-    },
-  },
   methods: {
     onDragOver() {
       this.isDragging = true;
@@ -77,6 +67,7 @@ export default {
     onDrop(event) {
       this.isDragging = false;
       const files = event.dataTransfer.files;
+	  console.log(files[0].name);
       this.$emit("files-dropped", files);
     },
     onButtonClick() {
@@ -95,10 +86,11 @@ export default {
   border: 1px dashed #FF0000;
   background-color: #FDF6FE;
   border-radius: 10px;
-  height: 100%;
+  height: 90%;
   width: 100%;
   text-align: center;
 }
+
 .upload-icon {
   width: 25px;
   height: 25px;
