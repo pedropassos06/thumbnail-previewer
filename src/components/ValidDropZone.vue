@@ -60,6 +60,10 @@ export default {
     text-decoration: underline;
 }
 
+.hyperlink:hover {
+    cursor: pointer;
+}
+
 .drop-zone--drag-over {
     border-color: #007bff;
     background-color: #e6f7ff;
@@ -69,10 +73,13 @@ export default {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     color: #6C606C;
     border: 1px dashed #14AE5C;
     background-color: #F7FEF6;
     border-radius: 10px;
+    height: 90%;
+    width: 100%;
+    padding: 10% 0%;
 }
 </style>
