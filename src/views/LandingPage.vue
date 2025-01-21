@@ -29,7 +29,11 @@
 					/>
 				</div>
 				<div v-else>
-					<ValidDropZone :files="files" class="drop-zone" />
+					<ValidDropZone 
+						:files="files" 
+						class="drop-zone" 
+						@files-dropped="handleFilesDropped" 
+					/>
 				</div>
 				<div class="upload-buttons">
 					<ActionButton
