@@ -28,10 +28,9 @@
 						text="Format: .jpeg, .png & Max file size: 2 MB"
 					/>
 				</div>
-				<div v-else>
+				<div v-else class="drop-zone">
 					<ValidDropZone 
 						:files="files" 
-						class="drop-zone" 
 						@files-dropped="handleFilesDropped" 
 					/>
 				</div>
