@@ -67,7 +67,6 @@ export default {
     onDrop(event) {
       this.isDragging = false;
       const files = event.dataTransfer.files;
-	  console.log(files[0].name);
       this.$emit("files-dropped", files);
     },
     onButtonClick() {
