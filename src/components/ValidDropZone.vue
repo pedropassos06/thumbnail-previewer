@@ -6,10 +6,8 @@
 		@dragleave="onDragLeave"
 		@drop.prevent="onDrop"
 	>
-		<div class="drop-zone__content">
-            <UploadedImageCard :fileName="files[0].name" />
-		    <p class="drop-zone-subheader">Click done or <a class="hyperlink">browse again</a></p>
-		</div>
+        <UploadedImageCard :fileName="files[0].name" />
+		<p class="drop-zone-subheader">Click done or <a class="hyperlink">browse again</a></p>
 	</div>
 </template>
 
@@ -52,17 +50,6 @@ export default {
 </script>
 
 <style scoped>
-.drop-zone {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    border: 1px dashed #14AE5C;
-    background-color: #F7FEF6;
-    border-radius: 10px;
-    text-align: center;
-}
-
 .drop-zone-subheader {
     color: #6C606C;
     margin-bottom: 20px;
@@ -78,12 +65,14 @@ export default {
     background-color: #e6f7ff;
 }
 
-.drop-zone__content {
+.drop-zone {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     color: #6C606C;
-    height: 90%;
-    width: 100%;
+    border: 1px dashed #14AE5C;
+    background-color: #F7FEF6;
+    border-radius: 10px;
 }
 </style>
