@@ -6,7 +6,9 @@
 		@dragleave="onDragLeave"
 		@drop.prevent="onDrop"
 	>
-        <UploadedImageCard :fileName="files[0].name" />
+        <div v-for="file in files" :key="file.name" class="uploaded-image-card-container">
+            <UploadedImageCard :fileName="file.name" />
+        </div>
 		<p class="drop-zone-subheader">Click done or <a class="hyperlink">browse again</a></p>
 	</div>
 </template>
@@ -81,5 +83,11 @@ export default {
     height: 90%;
     width: 100%;
     padding: 10% 0%;
+}
+
+.uploaded-image-card-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
 }
 </style>
