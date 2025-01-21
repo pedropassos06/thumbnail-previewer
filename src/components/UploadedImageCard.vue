@@ -23,9 +23,10 @@
     justify-content: center;
     border: 1px solid #E6E7EA;
     background-color: #FFFFFF;
-    border-radius: 5px;
-    padding: 4% 10%;
+    border-radius: 10px;
+    padding: 1rem 2rem;
     text-align: center;
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
 }
 
 .check-icon {
