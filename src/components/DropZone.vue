@@ -106,25 +106,30 @@ export default {
   color: #6C606C;
   margin-bottom: 20px;
 }
+
 .drop-zone--drag-over {
   border-color: #007bff;
   background-color: #e6f7ff;
 }
+
 .drop-zone__content {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
+
 .drop-zone__icon {
   width: 40px;
   height: 40px;
   margin-bottom: 10px;
 }
+
 .drop-zone__text {
   font-size: 16px;
   color: #333333;
   margin-bottom: 10px;
 }
+
 .drop-zone__button {
   background-color: #007bff;
   color: white;
@@ -133,6 +138,7 @@ export default {
   border-radius: 4px;
   cursor: pointer;
 }
+
 .drop-zone__button:hover {
   background-color: #0056b3;
 }
