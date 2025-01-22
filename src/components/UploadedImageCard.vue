@@ -1,6 +1,6 @@
 <template>
     <div class="uploaded-image-card">
-        <p>{{ fileName }}</p>
+        <p class="file-name">{{ fileName }}</p>
         <img src="@/components/icons/cross.svg" alt="Delete Icon" class="cross-icon" @click="handleDeleteImage" />
     </div>
 </template>
@@ -33,6 +33,15 @@
     padding: 1rem 2rem;
     text-align: center;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    max-width: 70%;
+}
+
+.file-name {
+    color: #181D27;
+    font-size: 1rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .cross-icon {
@@ -40,6 +49,5 @@
     height: 15px;
     margin-left: 10px;
     cursor: pointer;
-
 }
 </style>
