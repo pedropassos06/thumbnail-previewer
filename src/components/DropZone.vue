@@ -13,6 +13,7 @@
 		<input
 			ref="fileInput"
 			type="file"
+			accept=".jpg,.jpeg,.png"
 			class="file-input"
 			@change="onFileSelected"
 			multiple
