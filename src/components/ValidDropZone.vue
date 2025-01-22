@@ -12,7 +12,7 @@
             </div>
             <div v-else class="drop-zone__no-drag-content">
                 <div v-for="file in files" :key="file.name" class="uploaded-image-card-container">
-                    <UploadedImageCard :fileName="file.name" />
+                    <UploadedImageCard :fileName="file.name" @delete-image="handleDeleteImage" />
                 </div>
                 <p class="drop-zone-subheader">Click done or <a class="hyperlink">browse again</a></p>
             </div>
@@ -48,11 +48,14 @@ export default {
         },
         onDrop(event) {
             this.isDragging = false;
-            const reuploadedFiles = event.dataTransfer.files;
+            const reuploadedFiles = Array.from(event.dataTransfer.files); 
             this.$emit("files-dropped", reuploadedFiles);
         },
         onButtonClick() {
             this.$emit("button-clicked");
+        },
+        handleDeleteImage(fileName) {
+            this.$emit("delete-file", fileName);
         },
     },
 };

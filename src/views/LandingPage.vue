@@ -32,6 +32,7 @@
 					<ValidDropZone 
 						:files="files" 
 						@files-dropped="handleFilesDropped" 
+						@delete-file="handleDeleteFile"
 					/>
 				</div>
 				<div class="upload-buttons">
@@ -89,6 +90,10 @@ export default {
 				console.log("done");
 			}
 		},
+		handleDeleteFile(fileName) {
+			console.log(fileName);
+			this.files = this.files.filter(file => file.name !== fileName);
+		}
 	},
 };
 </script>
