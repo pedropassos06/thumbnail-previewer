@@ -36,6 +36,7 @@
 				</div>
 				<div class="upload-buttons">
 					<ActionButton
+						@click="handleButtonClick(BUTTON_TYPES.CANCEL)"
 						backgroundColor="#FFFFFF"
 						textColor="#000000"
 						stroke="#E6E7EA"
@@ -43,6 +44,7 @@
 						Cancel
 					</ActionButton>
 					<ActionButton
+						@click="handleButtonClick(BUTTON_TYPES.DONE)"
 						backgroundColor="#FF0000"
 						textColor="#FFFFFF"
 					>
@@ -59,6 +61,11 @@ import ActionButton from "@/components/ActionButton.vue";
 import DropZone from "@/components/DropZone.vue";
 import ValidDropZone from "@/components/ValidDropZone.vue";
 
+const BUTTON_TYPES = {
+	CANCEL: 'cancel',
+	DONE: 'done'
+};
+
 export default {
 	components: {
 		ActionButton,
@@ -68,11 +75,19 @@ export default {
 	data() {
 		return {
 			files: [],
+			BUTTON_TYPES
 		};
 	},
 	methods: {
 		handleFilesDropped(files) {
 			this.files = files;
+		},
+		handleButtonClick(type) {
+			if (type === this.BUTTON_TYPES.CANCEL) {
+				this.files = [];
+			} else if (type === this.BUTTON_TYPES.DONE) {
+				console.log("done");
+			}
 		},
 	},
 };
