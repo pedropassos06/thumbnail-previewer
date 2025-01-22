@@ -36,6 +36,8 @@
 <script>
 import ActionButton from "@/components/ActionButton.vue";
 
+const allowedExtensions = [".jpg", ".png", ".jpeg"];
+
 export default {
 	name: "DropZone",
 	components: {
@@ -65,7 +67,7 @@ export default {
 	},
 	data() {
 		return {
-		isDragging: false,
+			isDragging: false,
 		};
 	},
 	methods: {
@@ -78,7 +80,11 @@ export default {
 		onDrop(event) {
 			this.isDragging = false;
 			const files = Array.from(event.dataTransfer.files);
-			this.$emit("files-dropped", files);
+			const filteredFiles = files.filter((file) => {
+				const fileType = file.type;
+				return fileType === "image/jpeg" || fileType === "image/png";
+			});
+			this.$emit("files-dropped", filteredFiles);
 		},
 		triggerFileInput() {
 			// Programmatically open the file picker
@@ -104,7 +110,7 @@ export default {
 	border: 1px dashed #FF0000;
 	background-color: #FDF6FE;
 	border-radius: 10px;
-	height: 90%;
+	height: 100%;
 	width: 100%;
 	text-align: center;
 }

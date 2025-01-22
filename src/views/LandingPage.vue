@@ -21,6 +21,8 @@
 					<h3 class="upload-header">Upload Thumbnail</h3>
 					<p class="upload-subheader">Please upload file in .jpeg or .png format and make</p>
 					<p class="upload-subheader">sure the file size is under 2 MB.</p>
+					<p v-if="wrongFileUploaded" class="upload-subheader-alert">*make sure you are uploading .jpeg or .png*</p>
+					<br v-else />
 				</div>
 				<div v-if="!files.length" class="drop-zone">
 					<DropZone
@@ -76,12 +78,14 @@ export default {
 	data() {
 		return {
 			files: [],
-			BUTTON_TYPES
+			wrongFileUploaded: false,
+			BUTTON_TYPES,
 		};
 	},
 	methods: {
 		handleFilesDropped(files) {
 			this.files = files;
+			this.wrongFileUploaded = this.files.length === 0;
 		},
 		handleButtonClick(type) {
 			if (type === this.BUTTON_TYPES.CANCEL) {
@@ -184,5 +188,10 @@ export default {
 	display: flex;
 	align-items: center;
 	justify-content: center;
+}
+
+.upload-subheader-alert {
+	color: #FF0000;
+	font-weight: medium;
 }
 </style>
