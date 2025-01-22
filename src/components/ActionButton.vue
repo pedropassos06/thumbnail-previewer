@@ -1,5 +1,5 @@
 <template>
-	<button :style="buttonStyles" class="action-button" @click="handleClick">
+	<button :style="buttonStyles" class="action-button" @click="$emit('click')">
 		<slot />
 	</button>
 </template>
@@ -49,11 +49,6 @@ export default {
 				: "none",
 				transition: "all 0.3s ease",
 			};
-		},
-	},
-	methods: {
-		handleClick(event) {
-			this.$emit("click", event);
 		},
 	},
 };
