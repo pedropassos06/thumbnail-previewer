@@ -38,9 +38,9 @@
 .file-name {
     color: #181D27;
     font-size: 1rem;
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+    max-width: 80%;
 }
 
 .cross-icon {
