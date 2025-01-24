@@ -11,11 +11,11 @@
 		<h3 class="drop-zone-header">{{ header }}</h3>
 		<p class="drop-zone-subheader">{{ subheader }}</p>
 		<input
-			ref="fileInput"
 			type="file"
+			ref="fileInput"
 			accept=".jpg,.jpeg,.png"
 			class="file-input"
-			@change="onFileSelected"
+			@change="onFileChange"
 			multiple
 			hidden
 		/>
@@ -24,7 +24,7 @@
 			height="40px"
 			backgroundColor="#FF0000"
 			textColor="#FFFFFF"
-			@click="triggerFileInput"
+			@click="openFileExplorer"
 		>
 			{{ buttonText }}
 		</ActionButton>
@@ -35,8 +35,6 @@
 
 <script>
 import ActionButton from "@/components/ActionButton.vue";
-
-const allowedExtensions = [".jpg", ".png", ".jpeg"];
 
 export default {
 	name: "DropZone",
@@ -86,16 +84,15 @@ export default {
 			});
 			this.$emit("files-dropped", filteredFiles);
 		},
-		triggerFileInput() {
+		openFileExplorer() {
 			// Programmatically open the file picker
+			console.log("Opening file explorer");
 			this.$refs.fileInput.click();
 		},
-		onFileSelected(event) {
+		onFileChange(event) {
 			// Handle selected files from file input
-			const files = Array.from(event.target.files);
-			this.$emit("files-dropped", files);
-			// Reset input for consecutive selections
-			this.$refs.fileInput.value = null;
+			const selectedFiles = Array.from(event.target.files);
+            this.$emit("files-dropped", selectedFiles);
 		},
 	},
 };

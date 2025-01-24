@@ -17,7 +17,7 @@
                 <p class="drop-zone-subheader">
                     Click done or <a class="hyperlink" @click="openFileExplorer">browse again</a>
                 </p>
-                <input type="file" ref="fileInput" class="hidden-file-input" @change="onFileChange" multiple />
+                <input type="file" ref="fileInput" accept=".jpg,.jpeg,.png" class="hidden-file-input" @change="onFileChange" multiple hidden />
             </div>
         </div>
 	</div>
