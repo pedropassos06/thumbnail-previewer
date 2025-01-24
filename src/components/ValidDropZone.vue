@@ -14,7 +14,10 @@
                 <div v-for="file in files" :key="file.name" class="uploaded-image-card-container">
                     <UploadedImageCard :fileName="file.name" @delete-image="handleDeleteImage" />
                 </div>
-                <p class="drop-zone-subheader">Click done or <a class="hyperlink">browse again</a></p>
+                <p class="drop-zone-subheader">
+                    Click done or <a class="hyperlink" @click="openFileExplorer">browse again</a>
+                </p>
+                <input type="file" ref="fileInput" class="hidden-file-input" @change="onFileChange" multiple />
             </div>
         </div>
 	</div>
@@ -57,6 +60,13 @@ export default {
         handleDeleteImage(fileName) {
             this.$emit("delete-file", fileName);
         },
+        openFileExplorer() {
+            this.$refs.fileInput.click();
+        },
+        onFileChange(event) {
+            const selectedFiles = Array.from(event.target.files);
+            this.$emit("files-dropped", selectedFiles);
+        },
     },
 };
 </script>
@@ -67,9 +77,14 @@ export default {
     border: 1px dashed #14AE5C;
     background-color: #F7FEF6;
     border-radius: 10px;
+    padding: 0% 10%;
     height: 90%;
     width: 100%;
-    padding: 10% 0%;
+}
+
+.drop-zone-subheader {
+    display: flex;
+    justify-content: center;
 }
 
 .hyperlink {
@@ -80,7 +95,6 @@ export default {
 .hyperlink:hover {
     cursor: pointer;
 }
-
 
 .drop-zone--drag-over {
     border-color: #007bff;
@@ -98,5 +112,9 @@ export default {
     flex-direction: column;
     justify-content: space-between;
     align-items: center;
+}
+
+.hidden-file-input {
+    display: none;
 }
 </style>
