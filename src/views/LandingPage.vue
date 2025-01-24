@@ -91,12 +91,15 @@ export default {
 			if (type === this.BUTTON_TYPES.CANCEL) {
 				this.files = [];
 			} else if (type === this.BUTTON_TYPES.DONE) {
-				console.log("done");
+				this.goToPreview();
 			}
 		},
 		handleDeleteFile(fileName) {
 			console.log(fileName);
 			this.files = this.files.filter(file => file.name !== fileName);
+		},
+		goToPreview() {
+			this.$router.push({ name: "Preview" });
 		}
 	},
 };

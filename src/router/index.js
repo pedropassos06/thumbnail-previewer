@@ -4,8 +4,14 @@ const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
     {
-      path: '/', component: () => import('../views/LandingPage.vue'),
-      path: '/preview', component: () => import('../views/PreviewThumbnail.vue')
+      path: '/', 
+      name: "Home", 
+      component: () => import('../views/LandingPage.vue')
+    },
+    {
+      path: '/preview', 
+      name: "Preview", 
+      component: () => import('../views/PreviewThumbnail.vue')
     }
   ],
 })
