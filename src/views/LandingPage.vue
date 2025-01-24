@@ -102,7 +102,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .bg {
 	background: linear-gradient(to bottom right, #D63B19 0%, #E61862 52%, #F77D25 100%);
 	height: 100vh;
@@ -159,7 +159,7 @@ export default {
 .header-text {
 	font-size: 7rem;
 	line-height: 85.5%;
-	letter-spacing: -0.06em; /* -5% letter spacing */
+	letter-spacing: -0.06em;
 	font-weight: bold;
 }
 
