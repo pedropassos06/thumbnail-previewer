@@ -34,7 +34,12 @@ export default {
             this.selectedButton = button;
         },
     },
-} 
+    computed: {
+        BUTTON_TYPES() {
+            return BUTTON_TYPES;
+        },
+    },
+}
 </script>
 
 <style>

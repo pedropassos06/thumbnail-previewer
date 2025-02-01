@@ -6,6 +6,7 @@
 
 <script>
 import LeftMenuToggleButton from "@/components/ThumbnailPreviewPage/LeftMenuToggleButton.vue";
+
 export default {
     name: "LeftMenu",
     components: {
