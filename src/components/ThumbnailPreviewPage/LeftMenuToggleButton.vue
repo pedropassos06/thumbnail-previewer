@@ -51,7 +51,7 @@ export default {
     border-radius: 100px;
     background-color: #E6E7EA;
     gap: 2%;
-    width: 80%;
+    width: 100%;
     padding: 1%;
     filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.1));
 }
@@ -59,7 +59,7 @@ export default {
 .toggle-button {
     display: flex;
     justify-content: center;
-    font-size: 20px;
+    font-size: 18px;
     cursor: pointer;
     padding: 2%;
     width: 100%;
