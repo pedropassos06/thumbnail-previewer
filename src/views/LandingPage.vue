@@ -61,8 +61,8 @@
 
 <script>
 import ActionButton from "@/components/ActionButton.vue";
-import DropZone from "@/components/DropZone.vue";
-import ValidDropZone from "@/components/ValidDropZone.vue";
+import DropZone from "@/components/UploadThumbnailPage/DropZone.vue";
+import ValidDropZone from "@/components/UploadThumbnailPage/ValidDropZone.vue";
 
 const BUTTON_TYPES = {
 	CANCEL: 'cancel',
