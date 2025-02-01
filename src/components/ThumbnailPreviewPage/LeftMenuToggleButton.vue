@@ -2,15 +2,15 @@
     <div class="toggle-button-component">
         <p 
             class="toggle-button"
-            :class="{ selected: selectedButton === 'MainPage' }"
-            @click="handleButtonClick('MainPage')"
+            :class="{ selected: selectedButton === BUTTON_TYPES.MAIN_PAGE }"
+            @click="handleButtonClick(BUTTON_TYPES.MAIN_PAGE)"
         >
             Main Page
         </p>
         <p 
             class="toggle-button"
-            :class="{ selected: selectedButton === 'Search' }"
-            @click="handleButtonClick('Search')"
+            :class="{ selected: selectedButton === BUTTON_TYPES.SEARCH }"
+            @click="handleButtonClick(BUTTON_TYPES.SEARCH)"
         >
             Search
         </p>
@@ -18,11 +18,15 @@
 </template>
 
 <script>
+const BUTTON_TYPES = {
+    MAIN_PAGE: 'MainPage',
+    SEARCH: 'Search',
+};
 export default {
     name: "LeftMenuToggleButton",
     data() {
         return {
-            selectedButton: 'MainPage',
+            selectedButton: BUTTON_TYPES.MAIN_PAGE,
         };
     },
     methods: {
