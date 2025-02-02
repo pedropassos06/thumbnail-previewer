@@ -1,7 +1,7 @@
 <template>
     <div class="left-menu">
         <LeftMenuToggleButton />
-        <ThumbnailSection />
+        <ThumbnailSection :thumbnails="thumbnails" />
     </div>
 </template>
 
@@ -11,6 +11,12 @@ import ThumbnailSection from "@/components/ThumbnailPreviewPage/ThumbnailSection
 
 export default {
     name: "LeftMenu",
+    props: {
+        thumbnails: {
+            type: Array,
+            default: () => [],
+        },
+    },
     components: {
         LeftMenuToggleButton,
         ThumbnailSection,
