@@ -13,6 +13,13 @@
         <UploadThumbnailButton 
             @click="openFileExplorer"
         />
+        <div class="thumbnails">
+            <UploadedThumbnail
+                v-for="thumbnail in thumbnails"
+                :key="thumbnail.name"
+                :thumbnail="thumbnail"
+            />
+        </div>
     </div>
 </template>
 <script>
@@ -22,6 +29,12 @@ export default {
     components: {
         UploadThumbnailButton,
     },
+    props: {
+        thumbnails: {
+            type: Array,
+            default: () => [],
+        },
+    },
     methods: {
         openFileExplorer() {
             this.$refs.fileInput.click();
@@ -30,6 +43,9 @@ export default {
             const files = event.target.files;
             this.$emit('files-dropped', files);
         },
+    },
+    mounted() {
+        console.log(this.thumbnails);
     },
 }
 </script>
