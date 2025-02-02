@@ -60,6 +60,7 @@
 </template>
 
 <script>
+import { mapActions } from "vuex";
 import ActionButton from "@/components/ActionButton.vue";
 import DropZone from "@/components/UploadThumbnailPage/DropZone.vue";
 import ValidDropZone from "@/components/UploadThumbnailPage/ValidDropZone.vue";
@@ -83,6 +84,7 @@ export default {
 		};
 	},
 	methods: {
+		...mapActions(["updateFiles"]),
 		handleFilesDropped(files) {
 			this.files = files;
 			this.wrongFileUploaded = this.files.length === 0;
@@ -99,6 +101,7 @@ export default {
 			this.files = this.files.filter(file => file.name !== fileName);
 		},
 		goToPreview() {
+			this.updateFiles(this.files);
 			this.$router.push({ name: "Preview" });
 		}
 	},

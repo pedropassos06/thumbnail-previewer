@@ -1,13 +1,20 @@
 <template>
     <div class="preview-thumbnail-page">
-        <LeftMenu class="left-menu"/>
+        <LeftMenu class="left-menu" :thumbnails="thumbnails" />
     </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import LeftMenu from "@/components/ThumbnailPreviewPage/LeftMenu.vue";
 
 export default {
+    computed: {
+        ...mapGetters(["getFiles"]),
+        thumbnails() {
+            return this.getFiles;
+        }
+    },
     components: {
         LeftMenu,
     },
