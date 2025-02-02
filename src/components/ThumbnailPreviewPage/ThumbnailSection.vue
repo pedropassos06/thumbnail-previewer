@@ -13,21 +13,21 @@
         <UploadThumbnailButton 
             @click="openFileExplorer"
         />
-        <div class="thumbnails">
-            <UploadedThumbnail
-                v-for="thumbnail in thumbnails"
-                :key="thumbnail.name"
-                :thumbnail="thumbnail"
-            />
-        </div>
+        <UploadedThumbnail
+            v-for="thumbnail in thumbnails"
+            :key="thumbnail.name"
+            :thumbnail="thumbnail"
+        />
     </div>
 </template>
 <script>
 import UploadThumbnailButton from '@/components/ThumbnailPreviewPage/UploadThumbnailButton.vue';
+import UploadedThumbnail from '@/components/ThumbnailPreviewPage/UploadedThumbnail.vue';
 
 export default {
     components: {
         UploadThumbnailButton,
+        UploadedThumbnail,
     },
     props: {
         thumbnails: {
