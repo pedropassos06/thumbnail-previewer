@@ -82,6 +82,9 @@ export default {
 				const fileType = file.type;
 				return fileType === "image/jpeg" || fileType === "image/png";
 			});
+			filteredFiles.forEach((file) => {
+				file.url = URL.createObjectURL(file);
+			});
 			this.$emit("files-dropped", filteredFiles);
 		},
 		openFileExplorer() {
@@ -92,6 +95,9 @@ export default {
 		onFileChange(event) {
 			// Handle selected files from file input
 			const selectedFiles = Array.from(event.target.files);
+			selectedFiles.forEach((file) => {
+				file.url = URL.createObjectURL(file);
+			});
             this.$emit("files-dropped", selectedFiles);
 		},
 	},

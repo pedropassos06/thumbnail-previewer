@@ -51,8 +51,15 @@ export default {
         },
         onDrop(event) {
             this.isDragging = false;
-            const reuploadedFiles = Array.from(event.dataTransfer.files); 
-            this.$emit("files-dropped", reuploadedFiles);
+            const reuploadedFiles = Array.from(event.dataTransfer.files);
+            const filteredFiles = reuploadedFiles.filter((file) => {
+				const fileType = file.type;
+				return fileType === "image/jpeg" || fileType === "image/png";
+			});
+			filteredFiles.forEach((file) => {
+				file.url = URL.createObjectURL(file);
+			});
+            this.$emit("files-dropped", filteredFiles);
         },
         onButtonClick() {
             this.$emit("button-clicked");
@@ -65,6 +72,9 @@ export default {
         },
         onFileChange(event) {
             const selectedFiles = Array.from(event.target.files);
+            selectedFiles.forEach((file) => {
+				file.url = URL.createObjectURL(file);
+			});
             this.$emit("files-dropped", selectedFiles);
         },
     },
