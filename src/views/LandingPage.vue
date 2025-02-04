@@ -95,7 +95,7 @@ export default {
 				file.isSelected = false;
 				return file;
 			})
-			//this.wrongFileUploaded = this.thumbnails.length === 0;
+			this.wrongFileUploaded = thumbnails.length === 0;
 			this.updateThumbnails(thumbnails);
 		},
 		handleButtonClick(type) {
