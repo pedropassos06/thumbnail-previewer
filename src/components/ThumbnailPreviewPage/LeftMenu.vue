@@ -8,7 +8,7 @@
 <script>
 import LeftMenuToggleButton from "@/components/ThumbnailPreviewPage/LeftMenuToggleButton.vue";
 import ThumbnailSection from "@/components/ThumbnailPreviewPage/ThumbnailSection.vue";
-import { mapActions, mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 
 export default {
     name: "LeftMenu",
