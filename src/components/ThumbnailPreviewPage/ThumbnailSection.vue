@@ -20,6 +20,7 @@
                 :key="thumbnail.name"
                 :thumbnail="thumbnail"
                 class="thumbnail-item"
+                @select-thumbnail="selectThumbnail"
             />
         </div>
     </div>
@@ -45,9 +46,17 @@ export default {
             this.$refs.fileInput.click();
         },
         onFileChange(event) {
-            const files = event.target.files;
+            const files = Array.from(event.target.files).map(file => {
+                file.isSelected = false;
+                return file;
+            });
             console.log(files);
             this.$emit('files-dropped', files);
+        },
+        selectThumbnail(thumbnail) {
+            this.thumbnails.forEach((thumb) => {
+                thumb.isSelected = thumb.name === thumbnail.name;
+            });
         },
     },
 }

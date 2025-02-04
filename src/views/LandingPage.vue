@@ -86,7 +86,10 @@ export default {
 	methods: {
 		...mapActions(["updateFiles"]),
 		handleFilesDropped(files) {
-			this.files = files;
+			this.files = files.map(file => {
+				file.isSelected = false;
+				return file;
+			});
 			this.wrongFileUploaded = this.files.length === 0;
 		},
 		handleButtonClick(type) {

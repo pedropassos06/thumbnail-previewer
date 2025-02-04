@@ -1,15 +1,17 @@
 <template>
-    <div class="thumbnail-container">
+    <div class="thumbnail-container" @click="$emit('select-thumbnail', thumbnail)">
         <img 
             class="uploaded-thumbnail"
-            :class="{ 'selected': isSelected }"
+            :class="{ 'selected': thumbnail.isSelected }"
             :src="thumbnail.url" 
-            @click="$emit('select', thumbnail)"
         />
-        <div class="overlay"></div>
+        <div 
+            class="overlay"
+            v-if="thumbnail.isSelected"
+        />
         <p 
             class="checkmark" 
-            v-if="isSelected" 
+            v-if="thumbnail.isSelected" 
         >✓
         </p>
     </div>
@@ -22,10 +24,6 @@ export default {
         thumbnail: {
             type: Object,
             default: () => ({}),
-        },
-        isSelected: {
-            type: Boolean,
-            default: true,
         },
     },
 }
