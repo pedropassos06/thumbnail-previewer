@@ -15,7 +15,7 @@
                     v-for="thumbnail in thumbnails" 
                     :key="thumbnail.name" 
                     class="uploaded-image-card-container">
-                    <UploadedImageCard :fileName="thumbnail.name" @delete-image="handleDeleteImage" />
+                    <UploadedImageCard :fileName="thumbnail.file.name" @delete-image="handleDeleteImage" />
                 </div>
                 <p class="drop-zone-subheader">
                     Click done or <a class="hyperlink" @click="openFileExplorer">browse again</a>

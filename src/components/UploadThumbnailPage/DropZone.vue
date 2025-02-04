@@ -70,7 +70,7 @@ export default {
 		};
 	},
 	methods: {
-		...mapActions(["updateThumbnails"]),
+		...mapActions(["updateThumbnails", "addThumbnails"]),
 		onDragOver() {
 			this.isDragging = true;
 		},
@@ -84,11 +84,14 @@ export default {
 				const fileType = file.type;
 				return fileType === "image/jpeg" || fileType === "image/png";
 			});
-			filteredFiles.forEach((file) => {
-				file.isSelected = false;
-				file.url = URL.createObjectURL(file);
+			const validFiles = filteredFiles.map((file) => {
+				return {
+					file,
+					isSelected: false,
+					url: URL.createObjectURL(file),
+				};
 			});
-			this.updateThumbnails(filteredFiles);
+			this.updateThumbnails(validFiles);
 		},
 		openFileExplorer() {
 			// Programmatically open the file picker
@@ -96,13 +99,14 @@ export default {
 		},
 		onFileChange(event) {
 			// Handle selected files from file input
-			const selectedFiles = Array.from(event.target.files);
-			selectedFiles.forEach((file) => {
-				file.isSelected = false;
-				file.url = URL.createObjectURL(file);
-			});
-			console.log(selectedFiles);
-            this.updateThumbnails(selectedFiles);
+			const selectedFiles = Array.from(event.target.files).map(file => {
+                return {
+                    file,
+                    isSelected: false,
+                    url: URL.createObjectURL(file)
+                };
+            });
+            this.addThumbnails(selectedFiles);
 		},
 	},
 };
