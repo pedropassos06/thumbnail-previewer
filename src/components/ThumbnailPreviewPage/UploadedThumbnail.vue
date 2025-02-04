@@ -1,5 +1,5 @@
 <template>
-    <div class="thumbnail-container" @click="$emit('select-thumbnail', thumbnail.name)">
+    <div class="thumbnail-container" @click="handleSelectThumbnail">
         <img 
             class="uploaded-thumbnail"
             :class="{ 'selected': thumbnail.isSelected }"
@@ -18,6 +18,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex';
+
 export default {
     name: "UploadedThumbnail",
     props: {
@@ -26,6 +28,12 @@ export default {
             default: () => ({}),
         },
     },
+    methods: {
+        ...mapActions(['selectThumbnail']),
+        handleSelectThumbnail() {
+            this.selectThumbnail(this.thumbnail.name);
+        }
+    }
 }
 </script>
 
