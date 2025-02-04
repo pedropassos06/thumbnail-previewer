@@ -15,8 +15,11 @@ export default createStore({
             state.thumbnails = state.thumbnails.filter(thumbnail => thumbnail.name !== thumbnailName);
         },
         selectThumbnail(state, thumbnailName) {
-            state.thumbnails.forEach(thumbnail => {
-                thumbnail.isSelected = thumbnail.name === thumbnailName;
+            state.thumbnails = state.thumbnails.map(thumbnail => {
+                return {
+                    ...thumbnail,
+                    isSelected: thumbnail.name === thumbnailName
+                };
             });
         },
     },
@@ -24,7 +27,7 @@ export default createStore({
         updateThumbnails({commit}, thumbnails) {
             commit('setThumbnails', thumbnails);
         },
-        addThumbnail({commit}, thumbnails) {
+        addThumbnails({commit}, thumbnails) {
             thumbnails.forEach(thumbnail => {
                 commit('addThumbnail', thumbnail);
             });

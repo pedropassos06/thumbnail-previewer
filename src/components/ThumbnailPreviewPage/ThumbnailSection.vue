@@ -42,7 +42,7 @@ export default {
         },
     },
     methods: {
-        ...mapActions(['selectThumbnail']),
+        ...mapActions(['selectThumbnail', 'addThumbnails']),
         openFileExplorer() {
             this.$refs.fileInput.click();
         },
@@ -52,7 +52,7 @@ export default {
                 file.url = URL.createObjectURL(file);
                 return file;
             });
-            this.$emit('files-dropped', files);
+            this.addThumbnails(files);
         },
     },
 }
