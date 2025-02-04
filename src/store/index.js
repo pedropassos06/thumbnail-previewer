@@ -24,8 +24,10 @@ export default createStore({
         updateThumbnails({commit}, thumbnails) {
             commit('setThumbnails', thumbnails);
         },
-        addThumbnail({commit}, thumbnail) {
-            commit('addThumbnail', thumbnail);
+        addThumbnail({commit}, thumbnails) {
+            thumbnails.forEach(thumbnail => {
+                commit('addThumbnail', thumbnail);
+            });
         },
         deleteThumbnail({commit}, thumbnailName) {
             commit('removeThumbnail', thumbnailName);
