@@ -10,9 +10,9 @@ import LeftMenu from "@/components/ThumbnailPreviewPage/LeftMenu.vue";
 
 export default {
     computed: {
-        ...mapGetters(["getFiles"]),
+        ...mapGetters(["getThumbnails"]),
         thumbnails() {
-            return this.getFiles;
+            return this.getThumbnails;
         }
     },
     components: {

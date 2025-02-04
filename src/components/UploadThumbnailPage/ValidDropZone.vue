@@ -11,8 +11,11 @@
                 <p class="drop-zone-subheader">You can drop you image now</p>
             </div>
             <div v-else class="drop-zone__no-drag-content">
-                <div v-for="file in files" :key="file.name" class="uploaded-image-card-container">
-                    <UploadedImageCard :fileName="file.name" @delete-image="handleDeleteImage" />
+                <div 
+                    v-for="thumbnail in thumbnails" 
+                    :key="thumbnail.name" 
+                    class="uploaded-image-card-container">
+                    <UploadedImageCard :fileName="thumbnail.name" @delete-image="handleDeleteImage" />
                 </div>
                 <p class="drop-zone-subheader">
                     Click done or <a class="hyperlink" @click="openFileExplorer">browse again</a>
@@ -24,6 +27,7 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
 import UploadedImageCard from './UploadedImageCard.vue';
 
 export default {
@@ -33,16 +37,17 @@ export default {
             isDragging: false,
         };
     },
-    props: {
-        files: {
-            type: Array,
-            required: true,
-        },
-    },
     components: {   
         UploadedImageCard,
     },
+    computed: {
+        ...mapGetters(["getThumbnails"]),
+        thumbnails() {
+            return this.getThumbnails;
+        }
+    },
     methods: {
+        ...mapActions(["updateThumbnails", "deleteThumbnail"]),
         onDragOver() {
             this.isDragging = true;
         },
@@ -59,13 +64,10 @@ export default {
 			filteredFiles.forEach((file) => {
 				file.url = URL.createObjectURL(file);
 			});
-            this.$emit("files-dropped", filteredFiles);
-        },
-        onButtonClick() {
-            this.$emit("button-clicked");
+            this.updateThumbnails(filteredFiles);
         },
         handleDeleteImage(fileName) {
-            this.$emit("delete-file", fileName);
+            this.deleteThumbnail(fileName);
         },
         openFileExplorer() {
             this.$refs.fileInput.click();
@@ -75,7 +77,7 @@ export default {
             selectedFiles.forEach((file) => {
 				file.url = URL.createObjectURL(file);
 			});
-            this.$emit("files-dropped", selectedFiles);
+            this.updateThumbnails(selectedFiles);
         },
     },
 };

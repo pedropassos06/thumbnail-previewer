@@ -2,25 +2,39 @@ import { createStore } from 'vuex';
 
 export default createStore({
     state: {
-        files: [],
+        thumbnails: [],
     },
     mutations: {
-        setFiles(state, files) {
-            state.files = files;
+        setThumbnails(state, thumbnails) {
+            state.thumbnails = thumbnails;
         },
-        clearFiles(state) {
-            state.files = [];
+        addThumbnail(state, thumbnail) {
+            state.thumbnails.push(thumbnail);
+        },
+        removeThumbnail(state, thumbnailName) {
+            state.thumbnails = state.thumbnails.filter(thumbnail => thumbnail.name !== thumbnailName);
+        },
+        selectThumbnail(state, thumbnailName) {
+            state.thumbnails.forEach(thumbnail => {
+                thumbnail.isSelected = thumbnail.name === thumbnailName;
+            });
         },
     },
     actions: {
-        updateFiles({ commit }, files) {
-            commit('setFiles', files);
+        updateThumbnails({commit}, thumbnails) {
+            commit('setThumbnails', thumbnails);
         },
-        resetFiles({ commit }) {
-            commit('clearFiles');
+        addThumbnail({commit}, thumbnail) {
+            commit('addThumbnail', thumbnail);
+        },
+        deleteThumbnail({commit}, thumbnailName) {
+            commit('removeThumbnail', thumbnailName);
+        },
+        selectThumbnail({commit}, thumbnailName) {
+            commit('selectThumbnail', thumbnailName);
         },
     },
     getters: {
-        getFiles: state => state.files,
+        getThumbnails: state => state.thumbnails,
     },
 });

@@ -35,6 +35,7 @@
 
 <script>
 import ActionButton from "@/components/ActionButton.vue";
+import { mapActions } from "vuex";
 
 export default {
 	name: "DropZone",
@@ -69,6 +70,7 @@ export default {
 		};
 	},
 	methods: {
+		...mapActions(["updateThumbnails"]),
 		onDragOver() {
 			this.isDragging = true;
 		},
@@ -85,11 +87,10 @@ export default {
 			filteredFiles.forEach((file) => {
 				file.url = URL.createObjectURL(file);
 			});
-			this.$emit("files-dropped", filteredFiles);
+			this.updateThumbnails(filteredFiles);
 		},
 		openFileExplorer() {
 			// Programmatically open the file picker
-			console.log("Opening file explorer");
 			this.$refs.fileInput.click();
 		},
 		onFileChange(event) {
@@ -98,7 +99,7 @@ export default {
 			selectedFiles.forEach((file) => {
 				file.url = URL.createObjectURL(file);
 			});
-            this.$emit("files-dropped", selectedFiles);
+            this.updateThumbnails(selectedFiles);
 		},
 	},
 };

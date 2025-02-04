@@ -50,13 +50,10 @@ export default {
                 file.isSelected = false;
                 return file;
             });
-            console.log(files);
             this.$emit('files-dropped', files);
         },
         selectThumbnail(thumbnail) {
-            this.thumbnails.forEach((thumb) => {
-                thumb.isSelected = thumb.name === thumbnail.name;
-            });
+            this.$emit('select-thumbnail', thumbnail.name);
         },
     },
 }

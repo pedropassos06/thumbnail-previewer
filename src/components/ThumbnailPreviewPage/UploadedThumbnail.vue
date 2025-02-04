@@ -1,5 +1,5 @@
 <template>
-    <div class="thumbnail-container" @click="$emit('select-thumbnail', thumbnail)">
+    <div class="thumbnail-container" @click="$emit('select-thumbnail', thumbnail.name)">
         <img 
             class="uploaded-thumbnail"
             :class="{ 'selected': thumbnail.isSelected }"

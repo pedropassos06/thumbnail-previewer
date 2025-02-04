@@ -24,7 +24,7 @@
 					<p v-if="wrongFileUploaded" class="upload-subheader-alert">*make sure you are uploading .jpeg or .png*</p>
 					<br v-else />
 				</div>
-				<div v-if="!files.length" class="drop-zone">
+				<div v-if="!thumbnails || !thumbnails.length" class="drop-zone">
 					<DropZone
 						@files-dropped="handleFilesDropped"
 						text="Format: .jpeg, .png & Max file size: 2 MB"
@@ -32,7 +32,7 @@
 				</div>
 				<div v-else class="drop-zone">
 					<ValidDropZone 
-						:files="files" 
+						:files="thumbnails" 
 						@files-dropped="handleFilesDropped" 
 						@delete-file="handleDeleteFile"
 					/>
@@ -60,7 +60,7 @@
 </template>
 
 <script>
-import { mapActions } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 import ActionButton from "@/components/ActionButton.vue";
 import DropZone from "@/components/UploadThumbnailPage/DropZone.vue";
 import ValidDropZone from "@/components/UploadThumbnailPage/ValidDropZone.vue";
@@ -78,33 +78,37 @@ export default {
 	},
 	data() {
 		return {
-			files: [],
 			wrongFileUploaded: false,
 			BUTTON_TYPES,
 		};
 	},
+	computed: {
+		...mapGetters(["getThumbnails"]),
+		thumbnails() {
+			return this.getThumbnails;
+		}
+	},
 	methods: {
-		...mapActions(["updateFiles"]),
+		...mapActions(["updateThumbnails", "addThumbnail", "deleteThumbnail"]),
 		handleFilesDropped(files) {
-			this.files = files.map(file => {
+			const thumbnails = files.map(file => {
 				file.isSelected = false;
 				return file;
-			});
-			this.wrongFileUploaded = this.files.length === 0;
+			})
+			//this.wrongFileUploaded = this.thumbnails.length === 0;
+			this.updateThumbnails(thumbnails);
 		},
 		handleButtonClick(type) {
 			if (type === this.BUTTON_TYPES.CANCEL) {
-				this.files = [];
+				this.updateThumbnails([]);
 			} else if (type === this.BUTTON_TYPES.DONE) {
 				this.goToPreview();
 			}
 		},
 		handleDeleteFile(fileName) {
-			console.log(fileName);
-			this.files = this.files.filter(file => file.name !== fileName);
+			this.deleteThumbnail(fileName);
 		},
 		goToPreview() {
-			this.updateFiles(this.files);
 			this.$router.push({ name: "Preview" });
 		}
 	},

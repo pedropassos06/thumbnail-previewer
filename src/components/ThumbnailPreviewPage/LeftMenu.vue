@@ -1,21 +1,28 @@
 <template>
     <div class="left-menu">
         <LeftMenuToggleButton />
-        <ThumbnailSection :thumbnails="thumbnails" />
+        <ThumbnailSection :thumbnails="thumbnails" @select-thumbnail="selectThumbnail" />
     </div>
 </template>
 
 <script>
 import LeftMenuToggleButton from "@/components/ThumbnailPreviewPage/LeftMenuToggleButton.vue";
 import ThumbnailSection from "@/components/ThumbnailPreviewPage/ThumbnailSection.vue";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
     name: "LeftMenu",
-    props: {
-        thumbnails: {
-            type: Array,
-            default: () => [],
+    computed: {
+        ...mapGetters(["getThumbnails"]),
+        thumbnails() {
+            return this.getThumbnails;
         },
+    },
+    methods: {
+        ...mapActions(["selectThumbnail"]),
+        selectThumbnail(thumbnailName) {
+            this.selectThumbnail(thumbnailName);
+        }
     },
     components: {
         LeftMenuToggleButton,
