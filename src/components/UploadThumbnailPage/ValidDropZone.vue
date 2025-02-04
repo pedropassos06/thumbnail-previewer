@@ -62,6 +62,7 @@ export default {
 				return fileType === "image/jpeg" || fileType === "image/png";
 			});
 			filteredFiles.forEach((file) => {
+                file.isSelected = false;
 				file.url = URL.createObjectURL(file);
 			});
             this.updateThumbnails(filteredFiles);
@@ -75,6 +76,7 @@ export default {
         onFileChange(event) {
             const selectedFiles = Array.from(event.target.files);
             selectedFiles.forEach((file) => {
+                file.isSelected = false;
 				file.url = URL.createObjectURL(file);
 			});
             this.updateThumbnails(selectedFiles);

@@ -20,13 +20,14 @@
                 :key="thumbnail.name"
                 :thumbnail="thumbnail"
                 class="thumbnail-item"
-                @select-thumbnail="selectThumbnail"
+                @select-thumbnail="selectImage"
             />
         </div>
     </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex';
 import UploadThumbnailButton from '@/components/ThumbnailPreviewPage/UploadThumbnailButton.vue';
 import UploadedThumbnail from '@/components/ThumbnailPreviewPage/UploadedThumbnail.vue';
 
@@ -35,25 +36,28 @@ export default {
         UploadThumbnailButton,
         UploadedThumbnail,
     },
-    props: {
-        thumbnails: {
-            type: Array,
-            default: () => [],
+    computed: {
+        ...mapGetters(['getThumbnails']),
+        thumbnails() {
+            return this.getThumbnails;
         },
     },
     methods: {
+        ...mapActions(['selectThumbnail']),
         openFileExplorer() {
             this.$refs.fileInput.click();
         },
         onFileChange(event) {
             const files = Array.from(event.target.files).map(file => {
                 file.isSelected = false;
+                file.url = URL.createObjectURL(file);
                 return file;
             });
             this.$emit('files-dropped', files);
         },
-        selectThumbnail(thumbnail) {
-            this.$emit('select-thumbnail', thumbnail.name);
+        selectImage(thumbnail) {
+            console.log('selectImage', thumbnail);
+            this.selectThumbnail(thumbnail.name);
         },
     },
 }

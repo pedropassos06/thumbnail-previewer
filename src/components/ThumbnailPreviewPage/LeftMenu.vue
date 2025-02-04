@@ -1,7 +1,7 @@
 <template>
     <div class="left-menu">
         <LeftMenuToggleButton />
-        <ThumbnailSection :thumbnails="thumbnails" @select-thumbnail="selectThumbnail" />
+        <ThumbnailSection :thumbnails="thumbnails" />
     </div>
 </template>
 
@@ -17,12 +17,6 @@ export default {
         thumbnails() {
             return this.getThumbnails;
         },
-    },
-    methods: {
-        ...mapActions(["selectThumbnail"]),
-        selectThumbnail(thumbnailName) {
-            this.selectThumbnail(thumbnailName);
-        }
     },
     components: {
         LeftMenuToggleButton,
