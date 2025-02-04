@@ -31,7 +31,7 @@ export default {
     methods: {
         ...mapActions(['selectThumbnail']),
         handleSelectThumbnail() {
-            this.selectThumbnail(this.thumbnail.name);
+            this.selectThumbnail(this.thumbnail.file.name);
         }
     }
 }

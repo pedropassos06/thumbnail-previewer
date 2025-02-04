@@ -17,7 +17,7 @@
             />
             <UploadedThumbnail
                 v-for="thumbnail in thumbnails"
-                :key="thumbnail.name"
+                :key="thumbnail.file.name"
                 :thumbnail="thumbnail"
                 class="thumbnail-item"
             />
@@ -47,12 +47,14 @@ export default {
             this.$refs.fileInput.click();
         },
         onFileChange(event) {
-            const files = Array.from(event.target.files).map(file => {
-                file.isSelected = false;
-                file.url = URL.createObjectURL(file);
-                return file;
+            const selectedFiles = Array.from(event.target.files).map(file => {
+                return {
+                    file,
+                    isSelected: false,
+                    url: URL.createObjectURL(file)
+                };
             });
-            this.addThumbnails(files);
+            this.addThumbnails(selectedFiles);
         },
     },
 }

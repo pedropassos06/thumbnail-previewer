@@ -18,7 +18,7 @@ export default createStore({
             state.thumbnails = state.thumbnails.map(thumbnail => {
                 return {
                     ...thumbnail,
-                    isSelected: thumbnail.name === thumbnailName
+                    isSelected: thumbnail.file.name === thumbnailName,
                 };
             });
         },
