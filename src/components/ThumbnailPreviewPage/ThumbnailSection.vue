@@ -20,7 +20,6 @@
                 :key="thumbnail.name"
                 :thumbnail="thumbnail"
                 class="thumbnail-item"
-                @select-thumbnail="selectImage"
             />
         </div>
     </div>
@@ -54,10 +53,6 @@ export default {
                 return file;
             });
             this.$emit('files-dropped', files);
-        },
-        selectImage(thumbnail) {
-            console.log('selectImage', thumbnail);
-            this.selectThumbnail(thumbnail.name);
         },
     },
 }
