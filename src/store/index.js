@@ -11,8 +11,8 @@ export default createStore({
         addThumbnail(state, thumbnail) {
             state.thumbnails.push(thumbnail);
         },
-        removeThumbnail(state, thumbnailName) {
-            state.thumbnails = state.thumbnails.filter(thumbnail => thumbnail.name !== thumbnailName);
+        removeThumbnail(state, thumbnail) {
+            state.thumbnails = state.thumbnails.filter(t => t.file.name !== thumbnail.file.name);
         },
         selectThumbnail(state, thumbnailName) {
             state.thumbnails = state.thumbnails.map(thumbnail => {
@@ -32,8 +32,8 @@ export default createStore({
                 commit('addThumbnail', thumbnail);
             });
         },
-        deleteThumbnail({commit}, thumbnailName) {
-            commit('removeThumbnail', thumbnailName);
+        deleteThumbnail({commit}, thumbnail) {
+            commit('removeThumbnail', thumbnail);
         },
         selectThumbnail({commit}, thumbnailName) {
             commit('selectThumbnail', thumbnailName);
