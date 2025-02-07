@@ -4,7 +4,7 @@ export default createStore({
     state: {
         thumbnails: [],
         activeContextMenuIndex: -1,
-        titles: [],
+        titles: [""],
     },
     mutations: {
         setThumbnails(state, thumbnails) {
