@@ -2,18 +2,20 @@
     <div class="title-section">
         <SectionTitle>Titles</SectionTitle>
         <div class="title-section-wrapper">
-            <input 
+            <input
+                v-for="(title, index) in titles"
                 type="text" 
                 placeholder="Video title here..." 
                 class="title-input"
             />
-            <AddTitleButton />
+            <AddTitleButton @click="handleAddTitle()"/>
         </div>
     </div>
 </template>
 <script>
 import AddTitleButton from '@/components/AddTitleButton.vue';
 import SectionTitle from '@/components/SectionTitle.vue';
+import { mapGetters, mapActions } from 'vuex';
 
 export default {
     name: "TitleSection",
@@ -21,6 +23,18 @@ export default {
         SectionTitle,
         AddTitleButton,
     },
+    computed: {
+        ...mapGetters(['getTitles']),
+        titles() {
+            return this.getTitles;
+        }
+    },
+    methods: {
+        ...mapActions(['addTitle', 'removeTitle']),
+        handleAddTitle() {
+            this.addTitle("");
+        }
+    }
 }
 </script>
 <style>
@@ -34,7 +48,7 @@ export default {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 5px;
+    gap: 10px;
 }
 
 .title-input {
