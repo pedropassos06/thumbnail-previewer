@@ -4,6 +4,7 @@ export default createStore({
     state: {
         thumbnails: [],
         activeContextMenuIndex: -1,
+        titles: [],
     },
     mutations: {
         setThumbnails(state, thumbnails) {
@@ -26,6 +27,20 @@ export default createStore({
         setActiveContextMenuIndex(state, index) {
             state.activeContextMenuIndex = index;
         },
+        selectTitle(state, title) {
+            state.titles = state.titles.map(t => {
+                return {
+                    ...t,
+                    isSelected: t.name === title.name,
+                };
+            });
+        },
+        removeTitle(state, title) {
+            state.titles = state.titles.filter(t => t.name !== title.name);
+        },
+        addTitle(state, title) {
+            state.titles.push(title);
+        },
     },
     actions: {
         updateThumbnails({commit}, thumbnails) {
@@ -45,9 +60,19 @@ export default createStore({
         setActiveContextMenuIndex({commit}, index) {
             commit('setActiveContextMenuIndex', index);
         },
+        selectTitle({commit}, title) {
+            commit('selectTitle', title);
+        },
+        removeTitle({commit}, title) {
+            commit('removeTitle', title);
+        },
+        addTitle({commit}, title) {
+            commit('addTitle', title);
+        },
     },
     getters: {
         getThumbnails: state => state.thumbnails,
         getActiveContextMenuIndex: state => state.activeContextMenuIndex,
+        getTitles: state => state.titles,
     },
 });
