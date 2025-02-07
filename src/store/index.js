@@ -35,8 +35,8 @@ export default createStore({
                 };
             });
         },
-        removeTitle(state, title) {
-            state.titles = state.titles.filter(t => t.name !== title.name);
+        removeTitle(state, index) {
+            state.titles = state.titles.filter((_, i) => i !== index);
         },
         addTitle(state, title) {
             state.titles.push(title);
@@ -63,8 +63,8 @@ export default createStore({
         selectTitle({commit}, title) {
             commit('selectTitle', title);
         },
-        removeTitle({commit}, title) {
-            commit('removeTitle', title);
+        removeTitle({commit}, index) {
+            commit('removeTitle', index);
         },
         addTitle({commit}, title) {
             commit('addTitle', title);
