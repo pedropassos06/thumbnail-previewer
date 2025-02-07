@@ -1,5 +1,5 @@
 <template>
-    <div class="thumbnail-container" @click="handleSelectThumbnail">
+    <div class="thumbnail-container" @click="handleSelectThumbnail" @contextmenu.prevent="openContextMenu">
         <img 
             class="uploaded-thumbnail"
             :class="{ 'selected': thumbnail.isSelected }"
@@ -12,8 +12,16 @@
         <p 
             class="checkmark" 
             v-if="thumbnail.isSelected" 
-        >✓
-        </p>
+        >✓</p>
+
+        <!-- Context Menu -->
+        <transition name="fade">
+            <div v-if="showContextMenu" class="context-menu" :style="{ top: contextMenuY + 'px', left: contextMenuX + 'px' }" @click.stop>
+                <button @click="handleDeleteImage">
+                    <font-awesome-icon icon="fa-solid fa-trash" /> Delete Image
+                </button>
+            </div>
+        </transition>
     </div>
 </template>
 
@@ -28,10 +36,32 @@ export default {
             default: () => ({}),
         },
     },
+    data() {
+        return {
+            showContextMenu: false,
+            contextMenuX: 0,
+            contextMenuY: 0,
+        };
+    },
     methods: {
-        ...mapActions(['selectThumbnail']),
+        ...mapActions(["selectThumbnail", "deleteThumbnail"]),
+        openContextMenu(event) {
+            event.preventDefault();
+            this.showContextMenu = true;
+            this.contextMenuX = event.clientX;
+            this.contextMenuY = event.clientY;
+            document.addEventListener("click", this.closeContextMenu);
+        },
+        closeContextMenu() {
+            this.showContextMenu = false;
+            document.removeEventListener("click", this.closeContextMenu);
+        },
         handleSelectThumbnail() {
             this.selectThumbnail(this.thumbnail.file.name);
+        },
+        handleDeleteImage() {
+            this.deleteThumbnail(this.thumbnail);
+            this.closeContextMenu();
         }
     }
 }
@@ -73,8 +103,51 @@ export default {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.3); /* Black overlay with 50% opacity */
+    background-color: rgba(0, 0, 0, 0.3);
     border-radius: 10px;
-    border: 2px solid red;
+    border: 4px solid red;
+}
+
+.context-menu {
+    position: fixed;
+    background: #636166;
+    border-radius: 6px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    padding: 4px;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    gap: 5px;
+    opacity: 0.95;
+    min-width: 150px;
+}
+
+.context-menu button {
+    width: 100%;
+    color: white;
+    font-weight: normal;
+    background: none;
+    border: none;
+    padding: 8px 10px;
+    cursor: pointer;
+    text-align: left;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.context-menu button:hover {
+    background: rgba(255, 0, 0, 0.9);
+}
+
+/* Fade Animation */
+.fade-enter-active, .fade-leave-active {
+    transition: opacity 0.2s ease-in-out;
+}
+
+.fade-enter, .fade-leave-to {
+    opacity: 0;
 }
 </style>
