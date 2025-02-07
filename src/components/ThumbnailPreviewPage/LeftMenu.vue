@@ -2,12 +2,14 @@
     <div class="left-menu">
         <LeftMenuToggleButton />
         <ThumbnailSection :thumbnails="thumbnails" />
+        <TitleSection />
     </div>
 </template>
 
 <script>
 import LeftMenuToggleButton from "@/components/ThumbnailPreviewPage/LeftMenuToggleButton.vue";
 import ThumbnailSection from "@/components/ThumbnailPreviewPage/ThumbnailSection.vue";
+import TitleSection from "@/views/TitleSection.vue";
 import { mapGetters } from "vuex";
 
 export default {
@@ -21,6 +23,7 @@ export default {
     components: {
         LeftMenuToggleButton,
         ThumbnailSection,
+        TitleSection,
     },
 }
 </script>
@@ -35,5 +38,6 @@ export default {
     border: 1px solid #E6E7EA;
     border-radius: 15px;
     padding: 1.5%;
+    width: 100%;
 }
 </style>
