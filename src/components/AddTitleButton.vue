@@ -8,7 +8,7 @@ export default {
 </script>
 <style>
 .add-title-button {
-    border: none;
+    border: 1.2px solid transparent;
     width: 100%;
     background-color: #D5D5D5;
     border-radius: 10px;
@@ -16,7 +16,7 @@ export default {
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    padding: 2%;
+    padding: 9px;
 }
 
 .plus-icon {
