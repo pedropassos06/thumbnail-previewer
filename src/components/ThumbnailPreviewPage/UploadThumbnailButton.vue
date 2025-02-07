@@ -1,6 +1,6 @@
 <template>
     <div class="upload-thumbnail-button">
-        <p class="add-icon">+</p>
+        <p class="add-icon"><font-awesome-icon class="add-icon" icon="fa-solid fa-plus" /></p>
     </div>
 </template>
 <script>
