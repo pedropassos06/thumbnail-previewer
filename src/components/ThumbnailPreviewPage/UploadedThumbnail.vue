@@ -17,8 +17,11 @@
         <!-- Context Menu -->
         <transition name="fade">
             <div v-if="showContextMenu" class="context-menu" :style="{ top: contextMenuY + 'px', left: contextMenuX + 'px' }" @click.stop>
+                <button @click="handleSelectThumbnail">
+                    <font-awesome-icon icon="fa-solid fa-check" /> Select This Thumbnail
+                </button>
                 <button @click="handleDeleteImage">
-                    <font-awesome-icon icon="fa-solid fa-trash" /> Delete Image
+                    <font-awesome-icon icon="fa-solid fa-trash" /> Delete Thumbnail
                 </button>
             </div>
         </transition>
@@ -110,7 +113,7 @@ export default {
 
 .context-menu {
     position: fixed;
-    background: #636166;
+    background: #595959;
     border-radius: 6px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
     padding: 4px;
