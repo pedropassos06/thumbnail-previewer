@@ -3,7 +3,7 @@ import { createStore } from 'vuex';
 export default createStore({
     state: {
         thumbnails: [],
-        activeContextMenuIndex: null,
+        activeContextMenuIndex: -1,
     },
     mutations: {
         setThumbnails(state, thumbnails) {
@@ -23,7 +23,7 @@ export default createStore({
                 };
             });
         },
-        setActiveContextMenu(state, index) {
+        setActiveContextMenuIndex(state, index) {
             state.activeContextMenuIndex = index;
         },
     },
@@ -42,8 +42,8 @@ export default createStore({
         selectThumbnail({commit}, thumbnailName) {
             commit('selectThumbnail', thumbnailName);
         },
-        setActiveContextMenu({commit}, index) {
-            commit('setActiveContextMenu', index);
+        setActiveContextMenuIndex({commit}, index) {
+            commit('setActiveContextMenuIndex', index);
         },
     },
     getters: {

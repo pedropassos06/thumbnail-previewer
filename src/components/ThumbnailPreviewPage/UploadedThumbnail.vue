@@ -1,5 +1,5 @@
 <template>
-    <div class="thumbnail-container" @click="handleSelectThumbnail">
+    <div class="thumbnail-container" @click="handleSelectThumbnail" @contextmenu.prevent="openContextMenu($event)">
         <img 
             class="uploaded-thumbnail"
             :class="{ 'selected': thumbnail.isSelected }"
@@ -56,28 +56,28 @@ export default {
     methods: {
         ...mapActions(["selectThumbnail", "deleteThumbnail", "setActiveContextMenuIndex"]),
         openContextMenu(event) {
-            // prevent default right click menu
+            console.log("HERE")
             event.preventDefault();
-
-            // open context menu in cursor position
+            
             this.contextMenuX = event.clientX;
             this.contextMenuY = event.clientY;
-
-            // close context menu when clicked outside
+            
+            // Update Vuex store with the index
+            this.setActiveContextMenuIndex(this.index);
+            
             document.addEventListener("click", this.closeContextMenu);
         },
         closeContextMenu() {
+            this.setActiveContextMenuIndex(-1);
             document.removeEventListener("click", this.closeContextMenu);
         },
         handleSelectThumbnail() {
             this.selectThumbnail(this.thumbnail.file.name);
+            this.closeContextMenu();
         },
         handleDeleteImage() {
             this.deleteThumbnail(this.thumbnail);
             this.closeContextMenu();
-        },
-        setActiveContextMenuIndex() {
-            this.setActiveContextMenuIndex(this.index);
         },
     }
 }

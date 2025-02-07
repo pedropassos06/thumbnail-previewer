@@ -22,7 +22,6 @@
                 :index="index"
                 :activeContextMenu="activeContextMenuIndex === index"
                 class="thumbnail-item"
-                @contextmenu.prevent="handleOpenContextMenu"
             />
         </div>
     </div>
@@ -62,9 +61,6 @@ export default {
             });
             this.addThumbnails(selectedFiles);
         },
-        handleOpenContextMenu(index) {
-            this.setActiveContextMenuIndex(index);
-        }
     },
 }
 </script>
