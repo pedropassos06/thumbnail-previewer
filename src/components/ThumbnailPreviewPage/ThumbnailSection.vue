@@ -1,6 +1,6 @@
 <template>
     <div class="thumbnail-section">
-        <h3 class="title">Thumbnails</h3>
+        <SectionTitle>Thumbnails</SectionTitle>
         <input
             type="file"
             ref="fileInput"
@@ -31,11 +31,13 @@
 import { mapActions, mapGetters } from 'vuex';
 import UploadThumbnailButton from '@/components/ThumbnailPreviewPage/UploadThumbnailButton.vue';
 import UploadedThumbnail from '@/components/ThumbnailPreviewPage/UploadedThumbnail.vue';
+import SectionTitle from '@/components/SectionTitle.vue';
 
 export default {
     components: {
         UploadThumbnailButton,
         UploadedThumbnail,
+        SectionTitle,
     },
     computed: {
         ...mapGetters(['getThumbnails', 'getActiveContextMenuIndex']),
