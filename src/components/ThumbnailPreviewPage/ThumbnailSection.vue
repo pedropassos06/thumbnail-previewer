@@ -73,14 +73,6 @@ export default {
     color: black;
 }
 
-.title {
-    color: black;
-    font-size: 20px;
-    font-weight: bold;
-    text-decoration: underline;
-    margin-bottom: 10px;
-}
-
 /* 2x2 grid layout */
 .thumbnail-grid {
     display: grid;
