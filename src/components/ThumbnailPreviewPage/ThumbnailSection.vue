@@ -16,10 +16,13 @@
                 class="thumbnail-item"
             />
             <UploadedThumbnail
-                v-for="thumbnail in thumbnails"
+                v-for="(thumbnail, index) in thumbnails"
                 :key="thumbnail.file.name"
                 :thumbnail="thumbnail"
+                :index="index"
+                :activeContextMenu="activeContextMenuIndex === index"
                 class="thumbnail-item"
+                @contextmenu.prevent="handleOpenContextMenu"
             />
         </div>
     </div>
@@ -36,10 +39,13 @@ export default {
         UploadedThumbnail,
     },
     computed: {
-        ...mapGetters(['getThumbnails']),
+        ...mapGetters(['getThumbnails', 'getActiveContextMenuIndex']),
         thumbnails() {
             return this.getThumbnails;
         },
+        activeContextMenuIndex() {
+            return this.getActiveContextMenuIndex;
+        }
     },
     methods: {
         ...mapActions(['selectThumbnail', 'addThumbnails']),
@@ -56,6 +62,9 @@ export default {
             });
             this.addThumbnails(selectedFiles);
         },
+        handleOpenContextMenu(index) {
+            this.setActiveContextMenuIndex(index);
+        }
     },
 }
 </script>

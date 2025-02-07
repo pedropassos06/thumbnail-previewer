@@ -1,5 +1,5 @@
 <template>
-    <div class="thumbnail-container" @click="handleSelectThumbnail" @contextmenu.prevent="openContextMenu">
+    <div class="thumbnail-container" @click="handleSelectThumbnail">
         <img 
             class="uploaded-thumbnail"
             :class="{ 'selected': thumbnail.isSelected }"
@@ -16,7 +16,7 @@
 
         <!-- Context Menu -->
         <transition name="fade">
-            <div v-if="showContextMenu" class="context-menu" :style="{ top: contextMenuY + 'px', left: contextMenuX + 'px' }" @click.stop>
+            <div v-if="activeContextMenu" class="context-menu" :style="{ top: contextMenuY + 'px', left: contextMenuX + 'px' }" @click.stop>
                 <button @click="handleSelectThumbnail">
                     <font-awesome-icon icon="fa-solid fa-check" /> Select This Thumbnail
                 </button>
@@ -38,25 +38,35 @@ export default {
             type: Object,
             default: () => ({}),
         },
+        index: {
+            type: Number,
+            default: -1,
+        },
+        activeContextMenu: {
+            type: Boolean,
+            default: false,
+        },
     },
     data() {
         return {
-            showContextMenu: false,
             contextMenuX: 0,
             contextMenuY: 0,
         };
     },
     methods: {
-        ...mapActions(["selectThumbnail", "deleteThumbnail"]),
+        ...mapActions(["selectThumbnail", "deleteThumbnail", "setActiveContextMenuIndex"]),
         openContextMenu(event) {
+            // prevent default right click menu
             event.preventDefault();
-            this.showContextMenu = true;
+
+            // open context menu in cursor position
             this.contextMenuX = event.clientX;
             this.contextMenuY = event.clientY;
+
+            // close context menu when clicked outside
             document.addEventListener("click", this.closeContextMenu);
         },
         closeContextMenu() {
-            this.showContextMenu = false;
             document.removeEventListener("click", this.closeContextMenu);
         },
         handleSelectThumbnail() {
@@ -65,7 +75,10 @@ export default {
         handleDeleteImage() {
             this.deleteThumbnail(this.thumbnail);
             this.closeContextMenu();
-        }
+        },
+        setActiveContextMenuIndex() {
+            this.setActiveContextMenuIndex(this.index);
+        },
     }
 }
 </script>
