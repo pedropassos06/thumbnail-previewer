@@ -13,6 +13,13 @@
             class="checkmark" 
             v-if="thumbnail.isSelected" 
         >✓</p>
+        <confirmation-modal
+            v-model="showModal"
+            title="Delete Item"
+            message="Are you sure you want to delete this item?"
+            @confirm="handleDeleteImage"
+            @cancel="showModal = false"
+        />
 
         <!-- Context Menu -->
         <transition name="fade">
@@ -20,7 +27,7 @@
                 <button @click="handleSelectThumbnail">
                     <font-awesome-icon icon="fa-solid fa-check" /> Select This Thumbnail
                 </button>
-                <button @click="handleDeleteImage">
+                <button @click="handleOpenModal">
                     <font-awesome-icon icon="fa-solid fa-trash" /> Delete Thumbnail
                 </button>
             </div>
@@ -49,6 +56,7 @@ export default {
     },
     data() {
         return {
+            showModal: false,
             contextMenuX: 0,
             contextMenuY: 0,
         };
@@ -56,7 +64,6 @@ export default {
     methods: {
         ...mapActions(["selectThumbnail", "deleteThumbnail", "setActiveContextMenuIndex"]),
         openContextMenu(event) {
-            console.log("HERE")
             event.preventDefault();
             
             this.contextMenuX = event.clientX;
@@ -77,8 +84,11 @@ export default {
         },
         handleDeleteImage() {
             this.deleteThumbnail(this.thumbnail);
-            this.closeContextMenu();
         },
+        handleOpenModal() {
+            this.showModal = true;
+            this.closeContextMenu();
+        }
     }
 }
 </script>
