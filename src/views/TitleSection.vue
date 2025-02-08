@@ -2,13 +2,13 @@
     <div class="title-section">
         <SectionTitle>Titles</SectionTitle>
         <div class="title-section-wrapper">
-            <div v-for="(title, index) in titles" class="title-record">
+            <div v-for="(_, index) in titles" class="title-record">
                 <input
                     type="text" 
                     placeholder="Video title here..." 
                     class="title-input"
                 />
-                <font-awesome-icon class="delete-title-icon" icon="fa-solid fa-trash" @click="handleDeleteTitle(index)"/>
+                <font-awesome-icon v-if="showDeleteButton" class="delete-title-icon" icon="fa-solid fa-trash" @click="handleDeleteTitle(index)"/>
             </div>
             <AddTitleButton @click="handleAddTitle"/>
         </div>
@@ -29,7 +29,10 @@ export default {
         ...mapGetters(['getTitles']),
         titles() {
             return this.getTitles;
-        }
+        },
+        showDeleteButton() {
+            return this.titles.length > 1;
+        },
     },
     methods: {
         ...mapActions(['addTitle', 'removeTitle']),
