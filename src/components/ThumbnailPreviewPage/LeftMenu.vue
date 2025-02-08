@@ -3,6 +3,7 @@
         <LeftMenuToggleButton />
         <ThumbnailSection :thumbnails="thumbnails" />
         <TitleSection />
+        <YourChannelSection />
     </div>
 </template>
 
@@ -10,6 +11,7 @@
 import LeftMenuToggleButton from "@/components/ThumbnailPreviewPage/LeftMenuToggleButton.vue";
 import ThumbnailSection from "@/components/ThumbnailPreviewPage/ThumbnailSection.vue";
 import TitleSection from "@/views/TitleSection.vue";
+import YourChannelSection from "@/views/YourChannelSection.vue";
 import { mapGetters } from "vuex";
 
 export default {
@@ -24,6 +26,7 @@ export default {
         LeftMenuToggleButton,
         ThumbnailSection,
         TitleSection,
+        YourChannelSection,
     },
 }
 </script>
