@@ -72,6 +72,7 @@ export default createStore({
     },
     getters: {
         getThumbnails: state => state.thumbnails,
+        getSelectedThumbnail: state => state.thumbnails.find(t => t.isSelected),
         getActiveContextMenuIndex: state => state.activeContextMenuIndex,
         getTitles: state => state.titles,
     },
