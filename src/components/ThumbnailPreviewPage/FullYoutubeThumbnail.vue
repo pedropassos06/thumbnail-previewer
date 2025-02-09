@@ -5,7 +5,14 @@
             <img class="profile-picture" :src="video.channelProfilePic" :alt="video.channelName">
             <div class="video-info">
                 <h3 class="title">{{ video.title }}</h3>
-                <h3 class="channel-name">{{ video.channelName }}</h3>
+                <div class="channel-name-and-video-info-container">
+                    <span>{{ video.channelName }}</span>
+                    <div class="video-analytics">
+                        <span>{{ video.views }} views</span>
+                        <span> • </span>
+                        <span>{{ video.uploadedWhen }}</span>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -29,34 +36,41 @@ export default {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
-    max-width: 70%;
+    max-width: calc(80% - 20px);
     padding: 10px;
     box-sizing: border-box;
+    width: fit-content;
 }
 
 .video-info-wrapper {
     display: flex;
-    gap: 10px;
+    gap: 20px;
     align-items: center;
+    width: 100%;
 }
 
 .video-info {
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    width: 100%;
 }
 
-.title {
-    font-size: 1.2rem;
-    font-weight: bold;
-    width: 80%;
-    text-wrap: wrap;
-}
-
-.channel-name {
+.channel-name-and-video-info-container {
+    display: flex;
+    flex-direction: column;
     font-size: 1rem;
     color: #606060;
     font-weight: 500;
+    width: 100%;
+}
+
+.title {
+    font-size: 1.1rem;
+    font-weight: bold;
+    width: 100%;
+    text-wrap: wrap;
+    text-decoration: none;
+    line-height: 1.2;
 }
 
 .video-thumbnail {
@@ -64,11 +78,14 @@ export default {
     background: lightgray;
     border-radius: 10px;
     width: 100%;
+    content: "";
 }
 
 .profile-picture {
     width: 50px;
     height: 50px;
     border-radius: 50%;
+    background: lightgray;
+    content: "";
 }
 </style>
