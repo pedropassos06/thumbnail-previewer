@@ -1,12 +1,15 @@
 <template>
-    <div class="video-thumbnail-component">
-        <img class="video-thumbnail" :src="video.thumbnail" :alt="video.title">
+    <a :href="video.url" class="video-thumbnail-component">
+        <div class="thumbnail-wrapper">
+            <img class="video-thumbnail" :src="video.thumbnail" :alt="video.title">
+            <div class="video-duration">{{ video.duration }}</div>
+        </div>
         <div class="video-info-wrapper">
             <img class="profile-picture" :src="video.channelProfilePic" :alt="video.channelName">
             <div class="video-info">
                 <h3 class="title">{{ video.title }}</h3>
                 <div class="channel-name-and-video-info-container">
-                    <span>{{ video.channelName }}</span>
+                    <span class="channel-name">{{ video.channelName }}</span>
                     <div class="video-analytics">
                         <span>{{ video.views }} views</span>
                         <span> • </span>
@@ -15,7 +18,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </a>
 </template>
 
 <script>
@@ -34,15 +37,38 @@ export default {
 .video-thumbnail-component {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
+    gap: 8px;
+    text-decoration: none;
     width: 100%;
-    box-sizing: border-box;
+}
+
+.thumbnail-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.video-thumbnail {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+.video-duration {
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
 }
 
 .video-info-wrapper {
     display: flex;
-    gap: 20px;
+    gap: 12px;
     align-items: center;
     width: 100%;
 }
@@ -56,32 +82,24 @@ export default {
 .channel-name-and-video-info-container {
     display: flex;
     flex-direction: column;
-    font-size: 1rem;
+    font-size: 0.85rem;
     color: #606060;
     font-weight: 500;
-    width: 100%;
 }
 
 .title {
-    font-size: 1.1rem;
+    font-size: clamp(1rem, 1.2vw, 1.1rem);
     font-weight: bold;
     width: 100%;
-    text-wrap: wrap;
-    text-decoration: none;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
     line-height: 1.2;
 }
 
-.video-thumbnail {
-    aspect-ratio: 16 / 9;
-    background: lightgray;
-    border-radius: 10px;
-    width: 100%;
-    content: "";
-}
-
 .profile-picture {
-    width: 500px;
-    height: 500px;
+    max-width: 40px;
+    max-height: 40px;
     border-radius: 50%;
 }
 </style>

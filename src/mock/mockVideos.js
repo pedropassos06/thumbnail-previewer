@@ -17,6 +17,7 @@ const mockVideos = [
         channelName: 'Mr. Beast',
         uploadedWhen: '2 days ago',
         views: '10M',
+        duration: '10:01',
     },
     {
         id: 2,
@@ -26,6 +27,8 @@ const mockVideos = [
         channelName: 'Mr. Beast',
         uploadedWhen: '2 days ago',
         views: '10M',
+        duration: '10:01',
+
     },
     {
         id: 3,
@@ -35,6 +38,7 @@ const mockVideos = [
         channelName: 'Mr. Beast',
         uploadedWhen: '2 days ago',
         views: '10M',
+        duration: '10:01',
     },
     {
         id: 4,
@@ -44,6 +48,7 @@ const mockVideos = [
         channelName: 'Mr. Beast',
         uploadedWhen: '2 days ago',
         views: '10M',
+        duration: '10:01',
     },
     {
         id: 5,
@@ -53,6 +58,7 @@ const mockVideos = [
         channelName: 'Mr. Beast',
         uploadedWhen: '2 days ago',
         views: '10M',
+        duration: '10:01',
     },
     {
         id: 6,
@@ -62,6 +68,7 @@ const mockVideos = [
         channelName: 'Mr. Beast',
         uploadedWhen: '2 days ago',
         views: '10M',
+        duration: '10:01',
     },
     {
         id: 7,
@@ -71,6 +78,7 @@ const mockVideos = [
         channelName: 'Mr. Beast',
         uploadedWhen: '2 days ago',
         views: '10M',
+        duration: '10:01',
     },
     {
         id: 8,
@@ -80,6 +88,7 @@ const mockVideos = [
         channelName: 'Mr. Beast',
         uploadedWhen: '2 days ago',
         views: '10M',
+        duration: '10:01',
     },
 ]
 

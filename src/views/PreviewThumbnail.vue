@@ -39,6 +39,6 @@ export default {
 
 .main-youtube-page {
     flex: 1 1 80%;
-    padding: 2rem;
+    padding: 0 2rem;
 }
 </style>
