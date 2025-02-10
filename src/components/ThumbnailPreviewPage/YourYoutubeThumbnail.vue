@@ -1,7 +1,7 @@
 <template>
     <div class="video-thumbnail-component">
         <img v-if="selectedThumbnail" :src="selectedThumbnail.url" class="video-thumbnail">
-        <div v-else class="video-thumbnail">
+        <div v-else class="blank-thumbnail">
             <p>No Thumbnail Selected</p>
         </div>
         <div class="video-info-wrapper">
@@ -44,10 +44,10 @@ export default {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
-    max-width: calc(80% - 20px);
+    width: 100%;
+    max-width: 100%;
     padding: 10px;
     box-sizing: border-box;
-    width: fit-content;
 }
 
 .video-info-wrapper {
@@ -83,9 +83,16 @@ export default {
 
 .video-thumbnail {
     aspect-ratio: 16 / 9;
+    border-radius: 10px;
+    width: 100%;
+}
+
+.blank-thumbnail {
+    aspect-ratio: 16 / 9;
     background: lightgray;
     border-radius: 10px;
     width: 100%;
+    height: auto;
     display: flex;
     justify-content: center;
     align-items: center;

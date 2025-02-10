@@ -36,10 +36,8 @@ export default {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
-    max-width: calc(80% - 20px);
-    padding: 10px;
+    width: 100%;
     box-sizing: border-box;
-    width: fit-content;
 }
 
 .video-info-wrapper {
@@ -82,10 +80,8 @@ export default {
 }
 
 .profile-picture {
-    width: 50px;
-    height: 50px;
+    width: 500px;
+    height: 500px;
     border-radius: 50%;
-    background: lightgray;
-    content: "";
 }
 </style>

@@ -27,8 +27,6 @@ export default {
 <style>
 .preview-thumbnail-page {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     height: 100vh;
     background-color: #f5f5f5;
     color: black;
@@ -36,7 +34,11 @@ export default {
 }
 
 .left-menu {
-    width: 20%;
-    height: 90%;
+    flex: 1 1 20%;
+}
+
+.main-youtube-page {
+    flex: 1 1 80%;
+    padding: 2rem;
 }
 </style>
