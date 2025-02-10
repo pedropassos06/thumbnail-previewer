@@ -31,8 +31,7 @@ export default {
 .main-youtube-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    padding: 5rem;
-    justify-content: space-around;
-    max-width: 70%;
+    gap: 10px;
+    width: 100%;
 }
 </style>
