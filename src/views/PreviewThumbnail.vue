@@ -1,7 +1,7 @@
 <template>
     <div class="preview-thumbnail-page">
         <LeftMenu class="left-menu" :thumbnails="thumbnails" />
-        <MainYoutubePage />
+        <MainYoutubePage class="main-youtube-page" />
     </div>
 </template>
 
@@ -27,7 +27,7 @@ export default {
 <style>
 .preview-thumbnail-page {
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     height: 100vh;
     background-color: #f5f5f5;
