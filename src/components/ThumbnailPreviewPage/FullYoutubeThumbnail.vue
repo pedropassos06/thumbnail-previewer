@@ -1,5 +1,5 @@
 <template>
-    <a :href="video.url" class="video-thumbnail-component">
+    <div :href="video.url" class="video-thumbnail-component">
         <div class="thumbnail-wrapper">
             <img class="video-thumbnail" :src="video.thumbnail" :alt="video.title">
             <div class="video-duration">{{ video.duration }}</div>
@@ -18,7 +18,7 @@
                 </div>
             </div>
         </div>
-    </a>
+    </div>
 </template>
 
 <script>
@@ -37,9 +37,8 @@ export default {
 .video-thumbnail-component {
     display: flex;
     flex-direction: column;
-    gap: 8px;
-    text-decoration: none;
-    width: 100%;
+    align-items: flex-start;
+    gap: 10px;
 }
 
 .thumbnail-wrapper {
@@ -68,8 +67,8 @@ export default {
 
 .video-info-wrapper {
     display: flex;
-    gap: 12px;
-    align-items: center;
+    gap: 10px;
+    align-items: flex-start;
     width: 100%;
 }
 
@@ -98,8 +97,8 @@ export default {
 }
 
 .profile-picture {
-    max-width: 40px;
-    max-height: 40px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
 }
 </style>

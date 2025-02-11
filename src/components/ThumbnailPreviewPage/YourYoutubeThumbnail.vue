@@ -44,10 +44,6 @@ export default {
     flex-direction: column;
     align-items: flex-start;
     gap: 10px;
-    width: 100%;
-    max-width: 100%;
-    padding: 10px;
-    box-sizing: border-box;
 }
 
 .video-info-wrapper {
@@ -69,7 +65,6 @@ export default {
     font-size: 1rem;
     color: #606060;
     font-weight: 500;
-    width: 100%;
 }
 
 .title {
@@ -99,8 +94,8 @@ export default {
 }
 
 .profile-picture {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
     background: lightgray;
 }
