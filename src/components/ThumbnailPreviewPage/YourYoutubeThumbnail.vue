@@ -2,9 +2,7 @@
     <div class="video-thumbnail-component">
         <div class="thumbnail-wrapper">
             <img v-if="selectedThumbnail" :src="selectedThumbnail.url" class="video-thumbnail">
-            <div v-else class="blank-thumbnail">
-                <p>No Thumbnail Selected</p>
-            </div>
+            <img v-else :src="blankThumbnail" class="video-thumbnail">
             <div class="video-duration">{{ videoDuration }}</div>
         </div>
         <div class="video-info-wrapper">
@@ -26,9 +24,15 @@
 
 <script>
 import { mapGetters } from 'vuex';
+import blankThumbnail from '@/assets/mock/blank-thumbnail.png';
 
 export default {
     name: "YourYoutubeThumbnail",
+    data() {
+        return {
+            blankThumbnail
+        };
+    },
     computed: {
         ...mapGetters(["getSelectedThumbnail"]),
         selectedThumbnail() {
@@ -48,8 +52,7 @@ export default {
 .video-thumbnail-component {
     display: flex;
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     gap: 10px;
 }
 
@@ -94,17 +97,6 @@ export default {
     width: 100%;
 }
 
-.blank-thumbnail {
-    aspect-ratio: 16 / 9;
-    background: lightgray;
-    border-radius: 10px;
-    width: 100%;
-    height: auto;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
 .profile-picture {
     width: 40px;
     height: 40px;
@@ -114,8 +106,8 @@ export default {
 
 .video-duration {
     position: absolute;
-    bottom: 5px;
-    right: 5px;
+    bottom: 10px;
+    right: 10px;
     background: rgba(0, 0, 0, 0.8);
     color: white;
     font-size: 12px;

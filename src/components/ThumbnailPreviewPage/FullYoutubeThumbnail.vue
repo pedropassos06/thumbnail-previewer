@@ -65,6 +65,7 @@ export default {
     padding: 2px 5px;
     border-radius: 4px;
 }
+
 .video-info-wrapper {
     display: flex;
     gap: 10px;
