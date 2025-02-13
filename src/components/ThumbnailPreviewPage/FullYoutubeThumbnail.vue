@@ -55,8 +55,8 @@ export default {
 
 .video-duration {
     position: absolute;
-    bottom: 5px;
-    right: 5px;
+    bottom: 10px;
+    right: 10px;
     background: rgba(0, 0, 0, 0.8);
     color: white;
     font-size: 12px;
@@ -64,7 +64,6 @@ export default {
     padding: 2px 5px;
     border-radius: 4px;
 }
-
 .video-info-wrapper {
     display: flex;
     gap: 10px;

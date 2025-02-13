@@ -1,8 +1,11 @@
 <template>
     <div class="video-thumbnail-component">
-        <img v-if="selectedThumbnail" :src="selectedThumbnail.url" class="video-thumbnail">
-        <div v-else class="blank-thumbnail">
-            <p>No Thumbnail Selected</p>
+        <div class="thumbnail-wrapper">
+            <img v-if="selectedThumbnail" :src="selectedThumbnail.url" class="video-thumbnail">
+            <div v-else class="blank-thumbnail">
+                <p>No Thumbnail Selected</p>
+            </div>
+            <div class="video-duration">{{ videoDuration }}</div>
         </div>
         <div class="video-info-wrapper">
             <img class="profile-picture">
@@ -31,6 +34,9 @@ export default {
         selectedThumbnail() {
             return this.getSelectedThumbnail;
         },
+        videoDuration() {
+            return this.selectedThumbnail ? '10:01' : '0:00';
+        }
     },
     mounted() {
         console.log(this.selectedThumbnail);
@@ -50,6 +56,11 @@ export default {
     display: flex;
     gap: 10px;
     align-items: flex-start;
+    width: 100%;
+}
+
+.thumbnail-wrapper {
+    position: relative;
     width: 100%;
 }
 
@@ -98,5 +109,17 @@ export default {
     height: 40px;
     border-radius: 50%;
     background: lightgray;
+}
+
+.video-duration {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
 }
 </style>
