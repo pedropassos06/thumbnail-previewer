@@ -37,7 +37,7 @@ export default {
 .video-thumbnail-component {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     gap: 10px;
 }
