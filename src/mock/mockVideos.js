@@ -6,6 +6,9 @@ import thumb5 from '@/assets/mock/7 Days Stranded On An Island.png'
 import thumb6 from '@/assets/mock/50 YouTubers Fight For $1,000,000.png'
 import thumb7 from '@/assets/mock/100 Identical Twins Fight For $250,000.png'
 import thumb8 from '@/assets/mock/Every Country On Earth Fights For $250,000!.png'
+import thumb9 from '@/assets/mock/I Helped 2,000 People Walk Again.png'
+import thumb10 from '@/assets/mock/Every Minute One Person Is Eliminated.png'
+import thumb11 from '@/assets/mock/I Spent 100 Hours Inside The Pyramids!.png'
 import profilePic from '@/assets/mock/MrBeastChannelPic.jpg'
 
 const mockVideos = [
@@ -90,6 +93,36 @@ const mockVideos = [
         views: '10M',
         duration: '10:01',
     },
+    {
+        id: 9,
+        thumbnail: thumb9,
+        title: 'I Helped 2,000 People Walk Again',
+        channelProfilePic: profilePic,
+        channelName: 'Mr. Beast',
+        uploadedWhen: '2 days ago',
+        views: '10M',
+        duration: '10:01',
+    },
+    {
+        id: 10,
+        thumbnail: thumb10,
+        title: 'Every Minute One Person Is Eliminated',
+        channelProfilePic: profilePic,
+        channelName: 'Mr. Beast',
+        uploadedWhen: '2 days ago',
+        views: '10M',
+        duration: '10:01',
+    },
+    {
+        id: 11,
+        thumbnail: thumb11,
+        title: 'I Spent 100 Hours Inside The Pyramids!',
+        channelProfilePic: profilePic,
+        channelName: 'Mr. Beast',
+        uploadedWhen: '2 days ago',
+        views: '10M',
+        duration: '10:01',
+    }
 ]
 
 export default mockVideos
