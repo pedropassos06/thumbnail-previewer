@@ -3,11 +3,7 @@
         <SectionTitle>Titles</SectionTitle>
         <div class="title-section-wrapper">
             <div v-for="(_, index) in titles" class="title-record">
-                <input
-                    type="text" 
-                    placeholder="Video title here..." 
-                    class="title-input"
-                />
+                <InputBox v-model="titles[index]" placeholder="Enter title..." />
                 <font-awesome-icon v-if="showDeleteButton" class="delete-title-icon" icon="fa-solid fa-trash" @click="handleDeleteTitle(index)"/>
             </div>
             <AddTitleButton @click="handleAddTitle"/>
@@ -17,6 +13,7 @@
 <script>
 import AddTitleButton from '@/components/AddTitleButton.vue';
 import SectionTitle from '@/components/SectionTitle.vue';
+import InputBox from '@/components/InputBox.vue';
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
@@ -24,6 +21,7 @@ export default {
     components: {
         SectionTitle,
         AddTitleButton,
+        InputBox,
     },
     computed: {
         ...mapGetters(['getTitles']),
@@ -72,12 +70,5 @@ export default {
     :hover {
         color: red;
     }
-}
-
-.title-input {
-    border-radius: 10px;
-    border: 1.2px solid black;
-    padding: 9px;
-    width: 100%;
 }
 </style>
