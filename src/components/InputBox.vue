@@ -1,5 +1,10 @@
 <template>
-    <input type="{{ type }}" :placeholder="placeholder" class="title-input" />
+    <input 
+        :type="type" 
+        :placeholder="placeholder"
+        :value="modelValue"
+        @input="$emit('update:modelValue', $event.target.value)"
+        class="title-input"  />
 </template>
 <script>
 export default {
@@ -12,6 +17,10 @@ export default {
         placeholder: {
             type: String,
             default: 'Type something...'
+        },
+        modelValue: {
+            type: String,
+            default: ''
         }
     }
 }

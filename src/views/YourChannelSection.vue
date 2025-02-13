@@ -2,13 +2,14 @@
     <div class="your-channel-section">
         <SectionTitle>Your Channel</SectionTitle>
         <div class="your-channel-section-wrapper">
-            <InputBox type="text" placeholder="ex: @pedropassos_" />
+            <InputBox type="text" placeholder="ex: @pedropassos_" v-model="channelModel" />
             <ActionButton 
                 width="100%"
                 backgroundColor="#FF0000" 
                 textColor="#FFFFFF" 
                 stroke="#FF0000" 
                 hasDropShadow
+                @click="searchChannel"
             >Search my channel
             </ActionButton>
         </div>
@@ -22,10 +23,22 @@ import ActionButton from '@/components/ActionButton.vue';
 
 export default {
     name: "YourChannelSection",
+    data() {
+        return {
+            channelModel: '',
+        }
+    },
     components: {
         SectionTitle,
         InputBox,
         ActionButton,
+    },
+    methods: {
+        searchChannel() {
+            if (this.channelModel) {
+                console.log(`Searching for channel: ${this.channelModel}`);
+            }
+        }
     },
 }
 </script>
