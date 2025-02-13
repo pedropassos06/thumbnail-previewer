@@ -113,8 +113,8 @@ export default {
 
 .video-duration {
     position: absolute;
-    bottom: 10px;
-    right: 10px;
+    bottom: 5px;
+    right: 5px;
     background: rgba(0, 0, 0, 0.8);
     color: white;
     font-size: 12px;

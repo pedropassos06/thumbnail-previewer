@@ -31,6 +31,6 @@ export default {
 .main-youtube-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 30px;
+    gap: 10px 20px;
 }
 </style>
