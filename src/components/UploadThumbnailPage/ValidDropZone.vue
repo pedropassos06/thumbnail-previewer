@@ -12,13 +12,13 @@
             </div>
             <div v-else class="drop-zone__no-drag-content">
                 <div 
-                    v-for="thumbnail in thumbnails" 
-                    :key="thumbnail.name" 
+                    v-for="(thumbnail, index) in thumbnails" 
+                    :key="thumbnail.file.name" 
                     class="uploaded-image-card-container">
-                    <UploadedImageCard :fileName="thumbnail.file.name" @delete-image="handleDeleteImage" />
+                    <UploadedImageCard :fileName="thumbnail.file.name" @delete-image="handleDeleteImage(index)" />
                 </div>
                 <p class="drop-zone-subheader">
-                    Click done or <a class="hyperlink" @click="openFileExplorer">browse again</a>
+                    Click done or&nbsp;<a class="hyperlink" @click="openFileExplorer">browse again</a>
                 </p>
                 <input type="file" ref="fileInput" accept=".jpg,.jpeg,.png" class="hidden-file-input" @change="onFileChange" multiple hidden />
             </div>
@@ -47,7 +47,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions('thumbnails', ["updateThumbnails", "deleteThumbnail"]),
+        ...mapActions('thumbnails', ["updateThumbnails", "deleteThumbnail", "addThumbnails"]),
         onDragOver() {
             this.isDragging = true;
         },
@@ -56,30 +56,35 @@ export default {
         },
         onDrop(event) {
             this.isDragging = false;
-            const reuploadedFiles = Array.from(event.dataTransfer.files);
-            const filteredFiles = reuploadedFiles.filter((file) => {
+			const files = Array.from(event.dataTransfer.files);
+			const filteredFiles = files.filter((file) => {
 				const fileType = file.type;
 				return fileType === "image/jpeg" || fileType === "image/png";
 			});
-			filteredFiles.forEach((file) => {
-                file.isSelected = false;
-				file.url = URL.createObjectURL(file);
+			const validFiles = filteredFiles.map((file) => {
+				return {
+					file,
+					isSelected: false,
+					url: URL.createObjectURL(file),
+				};
 			});
-            this.updateThumbnails(filteredFiles);
+			this.updateThumbnails(validFiles);
         },
-        handleDeleteImage(fileName) {
-            this.deleteThumbnail(fileName);
+        handleDeleteImage(index) {
+            this.deleteThumbnail(index);
         },
         openFileExplorer() {
             this.$refs.fileInput.click();
         },
         onFileChange(event) {
-            const selectedFiles = Array.from(event.target.files);
-            selectedFiles.forEach((file) => {
-                file.isSelected = false;
-				file.url = URL.createObjectURL(file);
-			});
-            this.updateThumbnails(selectedFiles);
+            const selectedFiles = Array.from(event.target.files).map(file => {
+                return {
+                    file,
+                    isSelected: false,
+                    url: URL.createObjectURL(file)
+                };
+            });
+            this.addThumbnails(selectedFiles);
         },
     },
 };
