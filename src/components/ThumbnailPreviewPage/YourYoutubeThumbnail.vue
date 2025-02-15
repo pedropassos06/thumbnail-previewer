@@ -42,9 +42,6 @@ export default {
             return this.selectedThumbnail ? '10:01' : '0:00';
         }
     },
-    mounted() {
-        console.log(this.selectedThumbnail);
-    }
 }
 </script>
 
