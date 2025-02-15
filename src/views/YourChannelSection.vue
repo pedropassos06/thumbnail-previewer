@@ -26,6 +26,8 @@ export default {
     data() {
         return {
             channelModel: '',
+            channelName: '',
+            profilePic: '',
         }
     },
     components: {
@@ -34,9 +36,48 @@ export default {
         ActionButton,
     },
     methods: {
-        searchChannel() {
-            if (this.channelModel) {
-                console.log(`Searching for channel: ${this.channelModel}`);
+        async searchChannel() {
+            // Check if the user has entered a channel handle
+            if (!this.channelModel) {
+                alert('Please enter a channel handle');
+                return;
+            }
+
+            // Fetch channel data
+            try {
+                this.channelName = await this.getChannelName();
+                this.profilePic = await this.getProfilePic();
+                console.log(this.channelName, this.profilePic);
+            } catch (error) {
+                console.error("API Error:", error);
+            }
+        },
+        async getChannelName() {
+            // hit endpoint and return channel name
+            try {
+                const response = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=snippet&fields=items%2Fsnippet%2Ftitle&key=${import.meta.env.VITE_YOUTUBE_API_KEY}&forHandle=${this.channelModel}`);
+                if (!response.ok) {
+                    throw new Error(`Error fetching channel name: ${response.status}`);
+                }
+                const data = await response.json();
+                return data.items[0].snippet.title;
+            } catch (error) {
+                console.error("API Error:", error);
+                return '';
+            }
+        },
+        async getProfilePic() {
+            // hit endpoint and return profile pic
+            try {
+                const response = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=snippet&fields=items%2Fsnippet%2Fthumbnails&key=${import.meta.env.VITE_YOUTUBE_API_KEY}&forHandle=${this.channelModel}`);
+                if (!response.ok) {
+                    throw new Error(`Error fetching profile pic: ${response.status}`);
+                }
+                const data = await response.json();
+                return data.items[0].snippet.thumbnails.default.url;
+            } catch (error) {
+                console.error("API Error:", error);
+                return '';
             }
         }
     },
