@@ -21,9 +21,6 @@ export default {
             mockVideos,
         }
     },
-    mounted() {
-        console.log(this.mockVideos);
-    }
 }
 </script>
 
