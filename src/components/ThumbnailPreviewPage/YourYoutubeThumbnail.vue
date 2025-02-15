@@ -34,7 +34,7 @@ export default {
         };
     },
     computed: {
-        ...mapGetters(["getSelectedThumbnail"]),
+        ...mapGetters('thumbnails', ["getSelectedThumbnail"]),
         selectedThumbnail() {
             return this.getSelectedThumbnail;
         },

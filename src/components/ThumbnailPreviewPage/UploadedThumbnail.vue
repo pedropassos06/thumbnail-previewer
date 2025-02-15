@@ -62,7 +62,8 @@ export default {
         };
     },
     methods: {
-        ...mapActions(["selectThumbnail", "deleteThumbnail", "setActiveContextMenuIndex"]),
+        ...mapActions('thumbnails', ["selectThumbnail", "deleteThumbnail"]), 
+        ...mapActions('ui', ["setActiveContextMenuIndex"]),
         openContextMenu(event) {
             event.preventDefault();
             

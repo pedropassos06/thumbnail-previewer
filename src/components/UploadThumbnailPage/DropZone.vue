@@ -70,7 +70,7 @@ export default {
 		};
 	},
 	methods: {
-		...mapActions(["updateThumbnails", "addThumbnails"]),
+		...mapActions('thumbnails', ["updateThumbnails", "addThumbnails"]),
 		onDragOver() {
 			this.isDragging = true;
 		},

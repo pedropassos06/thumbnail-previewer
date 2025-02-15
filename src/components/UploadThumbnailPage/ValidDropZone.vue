@@ -41,13 +41,13 @@ export default {
         UploadedImageCard,
     },
     computed: {
-        ...mapGetters(["getThumbnails"]),
+        ...mapGetters('thumbnails', ["getThumbnails"]),
         thumbnails() {
             return this.getThumbnails;
         }
     },
     methods: {
-        ...mapActions(["updateThumbnails", "deleteThumbnail"]),
+        ...mapActions('thumbnails', ["updateThumbnails", "deleteThumbnail"]),
         onDragOver() {
             this.isDragging = true;
         },

@@ -24,7 +24,7 @@ export default {
         InputBox,
     },
     computed: {
-        ...mapGetters(['getTitles']),
+        ...mapGetters('titles', ['getTitles']),
         titles() {
             return this.getTitles;
         },
@@ -33,7 +33,7 @@ export default {
         },
     },
     methods: {
-        ...mapActions(['addTitle', 'removeTitle']),
+        ...mapActions('titles', ['addTitle', 'removeTitle']),
         handleAddTitle() {
             this.addTitle("");
         },

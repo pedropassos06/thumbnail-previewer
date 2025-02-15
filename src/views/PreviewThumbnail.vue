@@ -12,7 +12,7 @@ import MainYoutubePage from "./MainYoutubePage.vue";
 
 export default {
     computed: {
-        ...mapGetters(["getThumbnails"]),
+        ...mapGetters('thumbnails', ["getThumbnails"]),
         thumbnails() {
             return this.getThumbnails;
         }

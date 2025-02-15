@@ -17,7 +17,7 @@ import { mapGetters } from "vuex";
 export default {
     name: "LeftMenu",
     computed: {
-        ...mapGetters(["getThumbnails"]),
+        ...mapGetters('thumbnails', ["getThumbnails"]),
         thumbnails() {
             return this.getThumbnails;
         },

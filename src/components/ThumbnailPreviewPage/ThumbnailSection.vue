@@ -40,7 +40,8 @@ export default {
         SectionTitle,
     },
     computed: {
-        ...mapGetters(['getThumbnails', 'getActiveContextMenuIndex']),
+        ...mapGetters('thumbnails', ['getThumbnails']),
+        ...mapGetters('ui', ['getActiveContextMenuIndex']),
         thumbnails() {
             return this.getThumbnails;
         },
@@ -49,7 +50,7 @@ export default {
         }
     },
     methods: {
-        ...mapActions(['selectThumbnail', 'addThumbnails']),
+        ...mapActions('thumbnails', ['selectThumbnail', 'addThumbnails']),
         openFileExplorer() {
             this.$refs.fileInput.click();
         },

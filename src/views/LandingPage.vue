@@ -83,13 +83,13 @@ export default {
 		};
 	},
 	computed: {
-		...mapGetters(["getThumbnails"]),
+		...mapGetters('thumbnails', ["getThumbnails"]),
 		thumbnails() {
 			return this.getThumbnails;
 		}
 	},
 	methods: {
-		...mapActions(["updateThumbnails", "addThumbnail", "deleteThumbnail"]),
+		...mapActions('thumbnails', ["updateThumbnails", "addThumbnail", "deleteThumbnail"]),
 		handleFilesDropped(files) {
 			const thumbnails = files.map(file => {
 				file.isSelected = false;
