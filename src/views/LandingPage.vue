@@ -34,7 +34,6 @@
 					<ValidDropZone 
 						:files="thumbnails" 
 						@files-dropped="handleFilesDropped" 
-						@delete-file="handleDeleteFile"
 					/>
 				</div>
 				<div class="upload-buttons">
@@ -89,7 +88,7 @@ export default {
 		}
 	},
 	methods: {
-		...mapActions('thumbnails', ["updateThumbnails", "addThumbnail", "deleteThumbnail"]),
+		...mapActions('thumbnails', ["updateThumbnails"]),
 		handleFilesDropped(files) {
 			const thumbnails = files.map(file => {
 				file.isSelected = false;
@@ -104,9 +103,6 @@ export default {
 			} else if (type === this.BUTTON_TYPES.DONE) {
 				this.goToPreview();
 			}
-		},
-		handleDeleteFile(fileName) {
-			this.deleteThumbnail(fileName);
 		},
 		goToPreview() {
 			this.$router.push({ name: "Preview" });
