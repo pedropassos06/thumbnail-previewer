@@ -16,8 +16,8 @@ const actions = {
             commit('addThumbnail', thumbnail);
         });
     },
-    deleteThumbnail({commit}, thumbnail) {
-        commit('removeThumbnail', thumbnail);
+    deleteThumbnail({commit}, index) {
+        commit('removeThumbnail', index);
     },
     selectThumbnail({commit}, thumbnailName) {
         commit('selectThumbnail', thumbnailName);
@@ -31,8 +31,8 @@ const mutations = {
     addThumbnail(state, thumbnail) {
         state.thumbnails.push(thumbnail);
     },
-    removeThumbnail(state, thumbnail) {
-        state.thumbnails = state.thumbnails.filter(t => thumbnail.file.name !== t.file.name);
+    removeThumbnail(state, index) {
+        state.thumbnails = state.thumbnails.filter((_, i) => i !== index);
     },
     selectThumbnail(state, thumbnailName) {
         state.thumbnails = state.thumbnails.map(thumbnail => {

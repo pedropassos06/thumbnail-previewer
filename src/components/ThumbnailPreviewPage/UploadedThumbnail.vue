@@ -70,7 +70,7 @@ export default {
             
             this.contextMenuX = event.clientX;
             this.contextMenuY = event.clientY;
-                        
+
             // Update Vuex store with the index
             this.setActiveContextMenuIndex(this.index);
             
@@ -85,7 +85,7 @@ export default {
             this.closeContextMenu();
         },
         handleDeleteImage() {
-            this.deleteThumbnail(this.thumbnail);
+            this.deleteThumbnail(this.index);
         },
         handleOpenModal() {
             this.showModal = true;
