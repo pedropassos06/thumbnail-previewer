@@ -15,7 +15,7 @@
                     v-for="(thumbnail, index) in thumbnails" 
                     :key="thumbnail.file.name" 
                     class="uploaded-image-card-container">
-                    <UploadedImageCard :fileName="thumbnail.file.name" @delete-image="handleDeleteImage(index)" />
+                    <UploadedImageCard :thumbnail="thumbnail" @delete-image="handleDeleteImage" />
                 </div>
                 <p class="drop-zone-subheader">
                     Click done or&nbsp;<a class="hyperlink" @click="openFileExplorer">browse again</a>
@@ -70,8 +70,11 @@ export default {
 			});
 			this.updateThumbnails(validFiles);
         },
-        handleDeleteImage(index) {
-            this.deleteThumbnail(index);
+        handleDeleteImage(thumbnail) {
+            const index = this.thumbnails.indexOf(thumbnail);  // Find the index based on the object
+            if (index !== -1) {
+                this.deleteThumbnail(index);  // Perform deletion action here
+            }
         },
         openFileExplorer() {
             this.$refs.fileInput.click();

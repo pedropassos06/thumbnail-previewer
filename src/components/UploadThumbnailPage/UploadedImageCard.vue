@@ -1,25 +1,25 @@
 <template>
     <div class="uploaded-image-card">
-        <p class="file-name">{{ fileName }}</p>
+        <p class="file-name">{{ thumbnail.file.name }}</p>
         <img src="@/components/icons/cross.svg" alt="Delete Icon" class="cross-icon" @click="handleDeleteImage" />
     </div>
 </template>
 
 <script>
-    export default {
-        name: "UploadedImageCard",
-        props: {
-            fileName: {
-                type: String,
-                required: true,
-            },
+export default {
+    name: "UploadedImageCard",
+    props: {
+        thumbnail: {
+            type: Object,
+            required: true,
         },
-        methods: {
-            handleDeleteImage() {
-                this.$emit("delete-image", this.fileName);
-            },
-        }
-    };
+    },
+    methods: {
+        handleDeleteImage() {
+            this.$emit("delete-image", this.thumbnail);  // Emit the entire thumbnail object
+        },
+    }
+};
 </script>
 
 <style scoped>
