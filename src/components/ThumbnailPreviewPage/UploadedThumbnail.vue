@@ -1,5 +1,5 @@
 <template>
-    <div class="thumbnail-container" @click="handleSelectThumbnail" @contextmenu.prevent="openContextMenu($event)">
+    <div class="thumbnail-container" @contextmenu.prevent="openContextMenu($event)" @click="handleSelectThumbnail">
         <img 
             class="uploaded-thumbnail"
             :class="{ 'selected': thumbnail.isSelected }"
@@ -18,7 +18,8 @@
             title="Delete Item"
             message="Are you sure you want to delete this item?"
             @confirm="handleDeleteImage"
-            @cancel="showModal = false"
+            @cancel="handleCloseModal"
+            @click.stop
         />
 
         <!-- Context Menu -->
@@ -69,7 +70,7 @@ export default {
             
             this.contextMenuX = event.clientX;
             this.contextMenuY = event.clientY;
-            
+                        
             // Update Vuex store with the index
             this.setActiveContextMenuIndex(this.index);
             
@@ -89,6 +90,9 @@ export default {
         handleOpenModal() {
             this.showModal = true;
             this.closeContextMenu();
+        },
+        handleCloseModal() {
+            this.showModal = false;
         }
     }
 }
