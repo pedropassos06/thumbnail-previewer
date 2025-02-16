@@ -28,7 +28,7 @@ export default {
 .preview-thumbnail-page {
     display: flex;
     height: 100vh;
-    background-color: #f5f5f5;
+    background-color: #fff;
     color: black;
     padding: 3rem;
 }

@@ -3,7 +3,7 @@
         <SectionTitle>Titles</SectionTitle>
         <div class="title-section-wrapper">
             <div v-for="(_, index) in titles" class="title-record">
-                <InputBox v-model="titles[index]" placeholder="Enter title..." />
+                <InputBox v-model="titles[index]" placeholder="Enter title..." :selected="true" />
                 <font-awesome-icon v-if="showDeleteButton" class="delete-title-icon" icon="fa-solid fa-trash" @click="handleDeleteTitle(index)"/>
             </div>
             <AddTitleButton @click="handleAddTitle"/>
