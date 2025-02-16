@@ -3,7 +3,7 @@
         <SectionTitle>Titles</SectionTitle>
         <div class="title-section-wrapper">
             <div v-for="(_, index) in titles" class="title-record">
-                <InputBox v-model="titles[index]" placeholder="Enter title..." :selected="true" />
+                <InputBox v-model="titles[index].value" placeholder="Enter title..." :selected="titles[index].isSelected" @click="handleSelectTitle(index)"/>
                 <font-awesome-icon v-if="showDeleteButton" class="delete-title-icon" icon="fa-solid fa-trash" @click="handleDeleteTitle(index)"/>
             </div>
             <AddTitleButton @click="handleAddTitle"/>
@@ -33,12 +33,18 @@ export default {
         },
     },
     methods: {
-        ...mapActions('titles', ['addTitle', 'removeTitle']),
+        ...mapActions('titles', ["addTitle", "removeTitle", "selectTitle"]),
         handleAddTitle() {
-            this.addTitle("");
+            this.addTitle({
+                value: "",
+                isSelected: false,
+            });
         },
         handleDeleteTitle(index) {
             this.removeTitle(index);
+        },
+        handleSelectTitle(index) {
+            this.selectTitle(index);
         }
     }
 }

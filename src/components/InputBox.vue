@@ -47,11 +47,18 @@ export default {
     border: 1.2px solid black;
     padding: 9px;
     width: 100%;
+    cursor: pointer;
 }
 
 .selected-input {
     border: 1.6px solid #FF0000;
 }
+
+.title-input.selected-input:focus {
+    outline: none;
+    border: 1.8px solid #FF0000;
+}
+
 
 .selected-indicator {
     position: absolute;

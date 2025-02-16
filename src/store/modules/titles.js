@@ -1,5 +1,8 @@
 const state = {
-    titles: [""],
+    titles: [{
+        value: '',
+        isSelected: false,
+    }],
 };
 
 const getters = {
@@ -7,8 +10,8 @@ const getters = {
 };
 
 const actions = {
-    selectTitle({commit}, title) {
-        commit('selectTitle', title);
+    selectTitle({commit}, index) {
+        commit('selectTitle', index);
     },
     removeTitle({commit}, index) {
         commit('removeTitle', index);
