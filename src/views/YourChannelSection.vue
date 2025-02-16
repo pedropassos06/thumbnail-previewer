@@ -20,6 +20,7 @@
 import SectionTitle from '@/components/SectionTitle.vue';
 import InputBox from '@/components/InputBox.vue';
 import ActionButton from '@/components/ActionButton.vue';
+import { mapActions } from 'vuex';
 
 export default {
     name: "YourChannelSection",
@@ -36,6 +37,7 @@ export default {
         ActionButton,
     },
     methods: {
+        ...mapActions('channel', ['setChannelName', 'setChannelProfilePic']),
         async searchChannel() {
             // Check if the user has entered a channel handle
             if (!this.channelModel) {
@@ -47,7 +49,18 @@ export default {
             try {
                 this.channelName = await this.getChannelName();
                 this.profilePic = await this.getProfilePic();
-                console.log(this.channelName, this.profilePic);
+                
+                if (!this.channelName) {
+                    alert('Channel not found');
+                    return;
+                }
+
+                // update channel name
+                this.setChannelName(this.channelName);
+
+                // update profile pic
+                this.setChannelProfilePic(this.profilePic);
+
             } catch (error) {
                 console.error("API Error:", error);
             }
