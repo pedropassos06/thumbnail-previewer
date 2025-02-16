@@ -8,7 +8,7 @@
         <div class="video-info-wrapper">
             <img class="profile-picture" :src="profilePic">
             <div class="video-info">
-                <h3 class="title">Your Title Here</h3>
+                <h3 class="title">{{ selectedTitle }}</h3>
                 <div class="channel-name-and-video-info-container">
                     <span>{{ channelName }}</span>
                     <div class="video-analytics">
@@ -36,8 +36,12 @@ export default {
     computed: {
         ...mapGetters('thumbnails', ["getSelectedThumbnail"]),
         ...mapGetters('channel', ["getChannelName", "getChannelProfilePic"]),
+        ...mapGetters('titles', ["getSelectedTitle"]),
         selectedThumbnail() {
             return this.getSelectedThumbnail;
+        },
+        selectedTitle() {
+            return this.getSelectedTitle || 'Your Title Here';
         },
         channelName() {
             return this.getChannelName || 'Your Channel Here';

@@ -7,6 +7,10 @@ const state = {
 
 const getters = {
     getTitles: state => state.titles,
+    getSelectedTitle: state => {
+        const selectedTitle = state.titles.find(t => t.isSelected);
+        return selectedTitle ? selectedTitle.value : '';
+    },
 };
 
 const actions = {
