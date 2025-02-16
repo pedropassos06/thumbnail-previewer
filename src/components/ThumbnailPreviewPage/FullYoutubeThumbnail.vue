@@ -80,9 +80,7 @@ export default {
 }
 
 .channel-name-and-video-info-container {
-    display: flex;
-    flex-direction: column;
-    font-size: 0.85rem;
+    font-size: 0.90rem;
     color: #606060;
     font-weight: 500;
 }
