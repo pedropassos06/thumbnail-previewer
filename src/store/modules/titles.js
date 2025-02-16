@@ -9,7 +9,7 @@ const getters = {
     getTitles: state => state.titles,
     getSelectedTitle: state => {
         const selectedTitle = state.titles.find(t => t.isSelected);
-        return selectedTitle ? selectedTitle.value : '';
+        return selectedTitle ? selectedTitle.value : state.titles[0].value;
     },
 };
 
