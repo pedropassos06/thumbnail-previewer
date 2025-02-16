@@ -41,7 +41,21 @@ export default {
             return this.getSelectedThumbnail;
         },
         selectedTitle() {
-            return this.getSelectedTitle || 'Your Title Here';
+            const maxLength = window.innerWidth < 768 ? 50 : 70; // Mobile: 50 chars, Desktop: 70 chars
+            const title = this.getSelectedTitle || "Your Video Title Here";
+
+            if (title.length <= maxLength) return title;
+
+            // Find the last space before the cutoff
+            let truncated = title.slice(0, maxLength);
+            let lastSpaceIndex = truncated.lastIndexOf(" ");
+
+            // If there's a space, cut at the last whole word; otherwise, use maxLength
+            if (lastSpaceIndex > 0) {
+                truncated = truncated.slice(0, lastSpaceIndex);
+            }
+
+            return truncated + "...";
         },
         channelName() {
             return this.getChannelName || 'Your Channel Here';
