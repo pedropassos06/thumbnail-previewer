@@ -6,11 +6,11 @@
             <div class="video-duration">{{ videoDuration }}</div>
         </div>
         <div class="video-info-wrapper">
-            <img class="profile-picture">
+            <img class="profile-picture" :src="profilePic">
             <div class="video-info">
                 <h3 class="title">Your Title Here</h3>
                 <div class="channel-name-and-video-info-container">
-                    <span>Your Channel Here</span>
+                    <span>{{ channelName }}</span>
                     <div class="video-analytics">
                         <span>10K views</span>
                         <span> • </span>
@@ -35,8 +35,15 @@ export default {
     },
     computed: {
         ...mapGetters('thumbnails', ["getSelectedThumbnail"]),
+        ...mapGetters('channel', ["getChannelName", "getChannelProfilePic"]),
         selectedThumbnail() {
             return this.getSelectedThumbnail;
+        },
+        channelName() {
+            return this.getChannelName || 'Your Channel Here';
+        },
+        profilePic() {
+            return this.getChannelProfilePic || '';
         },
         videoDuration() {
             return this.selectedThumbnail ? '10:01' : '0:00';
