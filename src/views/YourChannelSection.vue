@@ -2,7 +2,7 @@
     <div class="your-channel-section">
         <SectionTitle>Your Channel</SectionTitle>
         <div class="your-channel-section-wrapper">
-            <InputBox type="text" placeholder="ex: @pedropassos_" v-model="channelModel" />
+            <InputBox type="text" placeholder="ex: @pedropassos_" v-model="channelHandle" />
             <ActionButton 
                 width="100%"
                 backgroundColor="#FF0000" 
@@ -26,7 +26,7 @@ export default {
     name: "YourChannelSection",
     data() {
         return {
-            channelModel: '',
+            channelHandle: '',
             channelName: '',
             profilePic: '',
         }
@@ -40,15 +40,16 @@ export default {
         ...mapActions('channel', ['setChannelName', 'setChannelProfilePic']),
         async searchChannel() {
             // Check if the user has entered a channel handle
-            if (!this.channelModel) {
+            if (!this.channelHandle) {
                 alert('Please enter a channel handle');
                 return;
             }
 
             // Fetch channel data
             try {
-                this.channelName = await this.getChannelName();
-                this.profilePic = await this.getProfilePic();
+                const channelData = await this.getChannelData();
+                this.channelName = channelData.channel_name;
+                this.profilePic = channelData.channel_profile_pic;
                 
                 if (!this.channelName) {
                     alert('Channel not found');
@@ -65,34 +66,20 @@ export default {
                 console.error("API Error:", error);
             }
         },
-        async getChannelName() {
-            // hit endpoint and return channel name
+        async getChannelData() {
+            // call backend
             try {
-                const response = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=snippet&fields=items%2Fsnippet%2Ftitle&key=${import.meta.env.VITE_YOUTUBE_API_KEY}&forHandle=${this.channelModel}`);
+                const response = await fetch(`http://localhost:8080/channel?handle=${this.channelHandle}`);
                 if (!response.ok) {
-                    throw new Error(`Error fetching channel name: ${response.status}`);
+                    throw new Error(`Error fetching channel data: ${response.status}`);
                 }
                 const data = await response.json();
-                return data.items[0].snippet.title;
+                return data;
             } catch (error) {
                 console.error("API Error:", error);
                 return '';
             }
         },
-        async getProfilePic() {
-            // hit endpoint and return profile pic
-            try {
-                const response = await fetch(`https://www.googleapis.com/youtube/v3/channels?part=snippet&fields=items%2Fsnippet%2Fthumbnails&key=${import.meta.env.VITE_YOUTUBE_API_KEY}&forHandle=${this.channelModel}`);
-                if (!response.ok) {
-                    throw new Error(`Error fetching profile pic: ${response.status}`);
-                }
-                const data = await response.json();
-                return data.items[0].snippet.thumbnails.default.url;
-            } catch (error) {
-                console.error("API Error:", error);
-                return '';
-            }
-        }
     },
 }
 </script>
