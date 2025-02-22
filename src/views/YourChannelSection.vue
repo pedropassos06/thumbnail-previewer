@@ -69,7 +69,7 @@ export default {
         async getChannelData() {
             // call backend
             try {
-                const response = await fetch(`http://localhost:8080/channel?handle=${this.channelHandle}`);
+                const response = await fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/channel?handle=${this.channelHandle}`);
                 if (!response.ok) {
                     throw new Error(`Error fetching channel data: ${response.status}`);
                 }
