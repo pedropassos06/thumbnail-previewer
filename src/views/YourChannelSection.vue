@@ -54,7 +54,7 @@ export default {
 
                 if (this.tooManyRequests) return;
                 
-                if (!channelData || !this.channelName || !this.profilePic) {
+                if (!channelData || !channelData.channel_name || !channelData.channel_profile_pic) {
                     alert('Channel not found');
                     return;
                 }
