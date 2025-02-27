@@ -12,7 +12,8 @@
         <p 
             class="checkmark" 
             v-if="thumbnail.isSelected" 
-        >✓</p>
+        ><font-awesome-icon icon="fa-solid fa-check" />
+        </p>
         <confirmation-modal
             v-model="showModal"
             title="Delete Item"
@@ -81,7 +82,7 @@ export default {
             document.removeEventListener("click", this.closeContextMenu);
         },
         handleSelectThumbnail() {
-            this.selectThumbnail(this.thumbnail.file.name);
+            this.selectThumbnail(this.index);
             this.closeContextMenu();
         },
         handleDeleteImage() {
