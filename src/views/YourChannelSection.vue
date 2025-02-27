@@ -10,8 +10,11 @@
                 stroke="#FF0000" 
                 hasDropShadow
                 @click="searchChannel"
-            >Search my channel
-            </ActionButton>
+            >Search my channel</ActionButton>
+        </div>
+        <!-- Display message if too many requests are made -->
+        <div v-if="tooManyRequests" class="error-message">
+            You have reached the rate limit. Please try again later.
         </div>
     </div>
 </template>
@@ -29,6 +32,7 @@ export default {
             channelHandle: '',
             channelName: '',
             profilePic: '',
+            tooManyRequests: false,  // Add a flag for rate limiting
         }
     },
     components: {
@@ -72,14 +76,14 @@ export default {
                 const response = await fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/channel?handle=${this.channelHandle}`);
                 if (!response.ok) {
                     if (response.status === 429) {
-                        // Handle 404 error specifically
-                        console.error(`Too many requests!`);
-                        // Display a user-friendly message or take alternative action
+                        // Handle rate-limited requests specifically
+                        this.tooManyRequests = true; // Set the flag to true
                         return null; // or throw an error to be caught later
                     }
                     throw new Error(`Error fetching channel data: ${response.status}`);
                 }
                 const data = await response.json();
+                this.tooManyRequests = false; // Reset flag if the request is successful
                 return data;
             } catch (error) {
                 console.error("API Error:", error);
@@ -102,5 +106,12 @@ export default {
     justify-content: center;
     align-items: center;
     gap: 10px;
+}
+
+.error-message {
+    padding: 4px;
+    color: red;
+    font-size: 14px;
+    font-weight: bold;
 }
 </style>
