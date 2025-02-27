@@ -71,6 +71,12 @@ export default {
             try {
                 const response = await fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/channel?handle=${this.channelHandle}`);
                 if (!response.ok) {
+                    if (response.status === 429) {
+                        // Handle 404 error specifically
+                        console.error(`Too many requests!`);
+                        // Display a user-friendly message or take alternative action
+                        return null; // or throw an error to be caught later
+                    }
                     throw new Error(`Error fetching channel data: ${response.status}`);
                 }
                 const data = await response.json();
