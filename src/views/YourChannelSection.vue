@@ -31,7 +31,8 @@ export default {
     data() {
         return {
             channelHandle: '',
-            tooManyRequests: false,  // Add a flag for rate limiting
+            tooManyRequests: false,
+            cacheExpiryHours: 24,  // Define cache expiration time
         }
     },
     components: {
@@ -41,14 +42,21 @@ export default {
     },
     methods: {
         ...mapActions('channel', ['setChannelName', 'setChannelProfilePic']),
+
         async searchChannel() {
-            // Check if the user has entered a channel handle
             if (!this.channelHandle) {
                 alert('Please enter a channel handle');
                 return;
             }
 
-            // Fetch channel data
+            // Check local storage before making an API request
+            const cachedData = this.getCachedChannelData(this.channelHandle);
+            if (cachedData) {
+                this.updateChannelData(cachedData);
+                return;
+            }
+
+            // Fetch channel data from API
             try {
                 const channelData = await this.getChannelData();
 
@@ -59,23 +67,22 @@ export default {
                     return;
                 }
 
-                // update channel name
-                this.setChannelName(channelData.channel_name);
+                // Cache the response
+                this.cacheChannelData(this.channelHandle, channelData);
 
-                // update profile pic
-                this.setChannelProfilePic(channelData.channel_profile_pic);
+                // Update Vuex state
+                this.updateChannelData(channelData);
 
             } catch (error) {
                 console.error("API Error:", error);
             }
         },
+
         async getChannelData() {
-            // call backend
             try {
                 const response = await fetch(`${import.meta.env.VITE_BACKEND_BASE_URL}/channel?handle=${this.channelHandle}`);
                 if (!response.ok) {
                     if (response.status === 429) {
-                        // Handle rate-limited requests specifically
                         this.tooManyRequests = true;
                         return null;
                     }
@@ -89,9 +96,42 @@ export default {
                 return null;
             }
         },
+
+        // update vuex state with fetched data
+        updateChannelData(channelData) {
+            this.setChannelName(channelData.channel_name);
+            this.setChannelProfilePic(channelData.channel_profile_pic);
+        },
+
+        // Store fetched data in localStorage with a timestamp
+        cacheChannelData(handle, data) {
+            const cacheEntry = {
+                data,
+                timestamp: new Date().getTime(),
+            };
+            localStorage.setItem(`channelData_${handle}`, JSON.stringify(cacheEntry));
+        },
+
+        // Retrieve cached data if it exists and is still valid
+        getCachedChannelData(handle) {
+            const cacheEntry = localStorage.getItem(`channelData_${handle}`);
+            if (!cacheEntry) return null;
+
+            const { data, timestamp } = JSON.parse(cacheEntry);
+            const now = new Date().getTime();
+            const expiryTime = this.cacheExpiryHours * 60 * 60 * 1000; // Convert hours to milliseconds
+
+            if (now - timestamp > expiryTime) {
+                // Data is expired, remove it
+                localStorage.removeItem(`channelData_${handle}`);
+                return null;
+            }
+            return data;
+        }
     },
 }
 </script>
+
 
 <style>
 .your-channel-section {
