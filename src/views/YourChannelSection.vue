@@ -9,6 +9,7 @@
                 textColor="#FFFFFF" 
                 stroke="#FF0000" 
                 hasDropShadow
+                :disabled="tooManyRequests"
                 @click="searchChannel"
             >Search my channel</ActionButton>
         </div>
@@ -30,8 +31,6 @@ export default {
     data() {
         return {
             channelHandle: '',
-            channelName: '',
-            profilePic: '',
             tooManyRequests: false,  // Add a flag for rate limiting
         }
     },
@@ -52,19 +51,19 @@ export default {
             // Fetch channel data
             try {
                 const channelData = await this.getChannelData();
-                this.channelName = channelData.channel_name;
-                this.profilePic = channelData.channel_profile_pic;
+
+                if (this.tooManyRequests) return;
                 
-                if (!this.channelName) {
+                if (!channelData || !this.channelName || !this.profilePic) {
                     alert('Channel not found');
                     return;
                 }
 
                 // update channel name
-                this.setChannelName(this.channelName);
+                this.setChannelName(channelData.channel_name);
 
                 // update profile pic
-                this.setChannelProfilePic(this.profilePic);
+                this.setChannelProfilePic(channelData.channel_profile_pic);
 
             } catch (error) {
                 console.error("API Error:", error);
@@ -77,17 +76,17 @@ export default {
                 if (!response.ok) {
                     if (response.status === 429) {
                         // Handle rate-limited requests specifically
-                        this.tooManyRequests = true; // Set the flag to true
-                        return null; // or throw an error to be caught later
+                        this.tooManyRequests = true;
+                        return null;
                     }
                     throw new Error(`Error fetching channel data: ${response.status}`);
                 }
                 const data = await response.json();
-                this.tooManyRequests = false; // Reset flag if the request is successful
+                this.tooManyRequests = false;
                 return data;
             } catch (error) {
                 console.error("API Error:", error);
-                return '';
+                return null;
             }
         },
     },
