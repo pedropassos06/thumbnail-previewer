@@ -26,19 +26,30 @@ const actions = {
 
 const mutations = {
     setThumbnails(state, thumbnails) {
-        state.thumbnails = thumbnails;
+        state.thumbnails = thumbnails.map((thumbnail, index) => {
+            return {
+                ...thumbnail,
+                isSelected: index === 0,
+            }
+        })
     },
     addThumbnail(state, thumbnail) {
         state.thumbnails.push(thumbnail);
+        if (state.thumbnails.length === 1) {
+            state.thumbnails[0].isSelected = true;
+        }
     },
     removeThumbnail(state, index) {
         state.thumbnails = state.thumbnails.filter((_, i) => i !== index);
+        if (state.thumbnails.length > 0) {
+            state.thumbnails[0].isSelected = true;
+        }
     },
-    selectThumbnail(state, thumbnailName) {
-        state.thumbnails = state.thumbnails.map(thumbnail => {
+    selectThumbnail(state, index) {
+        state.thumbnails = state.thumbnails.map((thumbnail, i) => {
             return {
                 ...thumbnail,
-                isSelected: thumbnail.file.name === thumbnailName,
+                isSelected: i === index,
             };
         });
     },
