@@ -41,7 +41,7 @@ const mutations = {
     },
     removeThumbnail(state, index) {
         state.thumbnails = state.thumbnails.filter((_, i) => i !== index);
-        if (state.thumbnails.length > 0) {
+        if (state.thumbnails.length > 0 && !state.thumbnails.some(t => t.isSelected)) {
             state.thumbnails[0].isSelected = true;
         }
     },
