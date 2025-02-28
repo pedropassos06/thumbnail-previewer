@@ -11,11 +11,13 @@
                 <p class="drop-zone-subheader">You can drop you image now</p>
             </div>
             <div v-else class="drop-zone__no-drag-content">
-                <div 
-                    v-for="(thumbnail, index) in thumbnails" 
-                    :key="thumbnail.file.name" 
-                    class="uploaded-image-card-container">
-                    <UploadedImageCard :thumbnail="thumbnail" @delete-image="handleDeleteImage" />
+                <div class="grid-container">
+                    <div 
+                        v-for="thumbnail in thumbnails" 
+                        :key="thumbnail.file.name" 
+                        class="uploaded-image-card-container">
+                        <UploadedImageCard :thumbnail="thumbnail" @delete-image="handleDeleteImage" />
+                    </div>
                 </div>
                 <p class="drop-zone-subheader">
                     Click done or&nbsp;<a class="hyperlink" @click="openFileExplorer">browse again</a>
@@ -124,9 +126,7 @@ export default {
 }
 
 .uploaded-image-card-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 .drop-zone__content {
@@ -138,5 +138,14 @@ export default {
 
 .hidden-file-input {
     display: none;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding: 10px;
 }
 </style>
