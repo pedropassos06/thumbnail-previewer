@@ -1,7 +1,7 @@
 <template>
     <div class="uploaded-image-card">
-        <p class="file-name">{{ thumbnail.file.name }}</p>
-        <img src="@/components/icons/cross.svg" alt="Delete Icon" class="cross-icon" @click="handleDeleteImage" />
+        <p class="file-name">{{ truncatedName }}</p>
+        <font-awesome-icon icon="fa-remove" class="cross-icon" @click="handleDeleteImage" />
     </div>
 </template>
 
@@ -14,9 +14,15 @@ export default {
             required: true,
         },
     },
+    computed: {
+        truncatedName() {
+            const name = this.thumbnail.file.name
+            return name.length > 20 ? name.slice(0,17) + "..." : name
+        }
+    },
     methods: {
         handleDeleteImage() {
-            this.$emit("delete-image", this.thumbnail);  // Emit the entire thumbnail object
+            this.$emit("delete-image", this.thumbnail);
         },
     }
 };
@@ -30,9 +36,10 @@ export default {
     border: 1px solid #E6E7EA;
     background-color: #FFFFFF;
     border-radius: 10px;
-    padding: 1rem 2rem;
+    padding: 0.5rem 1rem;
     text-align: center;
     box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.25);
+    max-width: 90%;
 }
 
 .file-name {
@@ -40,7 +47,7 @@ export default {
     font-size: 1rem;
     overflow: hidden;
     text-overflow: ellipsis;
-    max-width: 80%;
+    white-space: nowrap;
 }
 
 .cross-icon {
