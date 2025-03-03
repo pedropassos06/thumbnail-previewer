@@ -20,10 +20,7 @@
 			hidden
 		/>
 		<ActionButton
-			width="100px"
-			height="40px"
-			backgroundColor="#FF0000"
-			textColor="#FFFFFF"
+			type="primary"
 			@click="openFileExplorer"
 		>
 			{{ buttonText }}

@@ -6,22 +6,22 @@
                 <InputBox v-model="titles[index].value" placeholder="Enter title..." :selected="titles[index].isSelected" @click="handleSelectTitle(index)"/>
                 <font-awesome-icon v-if="showDeleteButton" class="delete-title-icon" icon="fa-solid fa-trash" @click="handleDeleteTitle(index)"/>
             </div>
-            <AddTitleButton @click="handleAddTitle"/>
+            <ActionButton type="tertiary" @click="handleAddTitle"><font-awesome-icon class="plus-icon" icon="fa-solid fa-plus" /></ActionButton>
         </div>
     </div>
 </template>
 <script>
-import AddTitleButton from '@/components/UI/AddTitleButton.vue';
 import SectionTitle from '@/components/UI/SectionTitle.vue';
 import InputBox from '@/components/UI/InputBox.vue';
+import ActionButton from '../UI/ActionButton.vue';
 import { mapGetters, mapActions } from 'vuex';
 
 export default {
     name: "TitleSection",
     components: {
         SectionTitle,
-        AddTitleButton,
         InputBox,
+        ActionButton,
     },
     computed: {
         ...mapGetters('titles', ['getTitles']),

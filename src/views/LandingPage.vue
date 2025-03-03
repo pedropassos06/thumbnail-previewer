@@ -39,16 +39,13 @@
 				<div class="upload-buttons">
 					<ActionButton
 						@click="handleButtonClick(BUTTON_TYPES.CANCEL)"
-						backgroundColor="#FFFFFF"
-						textColor="#000000"
-						stroke="#E6E7EA"
+						type="secondary"
 					>
 						Cancel
 					</ActionButton>
 					<ActionButton
 						@click="handleButtonClick(BUTTON_TYPES.DONE)"
-						backgroundColor="#FF0000"
-						textColor="#FFFFFF"
+						type="primary"
 					>
 						Done
 					</ActionButton>

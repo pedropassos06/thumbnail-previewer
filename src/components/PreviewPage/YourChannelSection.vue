@@ -4,11 +4,7 @@
         <div class="your-channel-section-wrapper">
             <InputBox type="text" placeholder="ex: @pedropassos_" v-model="channelHandle" />
             <ActionButton 
-                width="100%"
-                backgroundColor="#FF0000" 
-                textColor="#FFFFFF" 
-                stroke="#FF0000" 
-                hasDropShadow
+                type="primary"
                 :disabled="tooManyRequests"
                 @click="searchChannel"
             >Search my channel</ActionButton>
