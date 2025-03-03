@@ -7,8 +7,8 @@
 
 <script>
 import mockVideos from '@/mock/mockVideos';
-import FullYoutubeThumbnail from '@/components/ThumbnailPreviewPage/FullYoutubeThumbnail.vue';
-import YourYoutubeThumbnail from '@/components/ThumbnailPreviewPage/YourYoutubeThumbnail.vue';
+import FullYoutubeThumbnail from '@/components/PreviewPage/FullYoutubeThumbnail.vue';
+import YourYoutubeThumbnail from '@/components/PreviewPage/YourYoutubeThumbnail.vue';
 
 export default {
     name: "MainYoutubePage",

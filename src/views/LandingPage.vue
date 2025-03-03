@@ -60,9 +60,9 @@
 
 <script>
 import { mapActions, mapGetters } from "vuex";
-import ActionButton from "@/components/ActionButton.vue";
-import DropZone from "@/components/UploadThumbnailPage/DropZone.vue";
-import ValidDropZone from "@/components/UploadThumbnailPage/ValidDropZone.vue";
+import ActionButton from "@/components/UI/ActionButton.vue";
+import DropZone from "@/components/LandingPage/DropZone.vue";
+import ValidDropZone from "@/components/LandingPage/ValidDropZone.vue";
 
 const BUTTON_TYPES = {
 	CANCEL: 'cancel',

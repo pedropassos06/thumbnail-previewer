@@ -21,9 +21,9 @@
 </template>
 
 <script>
-import SectionTitle from '@/components/SectionTitle.vue';
-import InputBox from '@/components/InputBox.vue';
-import ActionButton from '@/components/ActionButton.vue';
+import SectionTitle from '@/components/UI/SectionTitle.vue';
+import InputBox from '@/components/UI/InputBox.vue';
+import ActionButton from '@/components/UI/ActionButton.vue';
 import { mapActions } from 'vuex';
 
 export default {

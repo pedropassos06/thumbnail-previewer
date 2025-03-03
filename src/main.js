@@ -5,7 +5,7 @@ import App from './App.vue'
 import store from './store'
 import router from './router'
 import { FontAwesomeIcon } from '@/components/icons/fontAwesome'
-import ConfirmationModal from './components/ConfirmationModal.vue'
+import ConfirmationModal from './components/UI/ConfirmationModal.vue'
 
 const app = createApp(App)
 app.component('font-awesome-icon', FontAwesomeIcon)

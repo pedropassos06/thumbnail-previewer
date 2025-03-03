@@ -61,8 +61,8 @@ src/
         icons/
         InputBox.vue
         SectionTitle.vue
-        ThumbnailPreviewPage/
-        UploadThumbnailPage/
+        PreviewPage/
+        LandingPage/
     main.js
     mock/
         mockVideos.js
@@ -82,7 +82,7 @@ vite.config.js
 - Upload and preview YouTube thumbnails.
 - Manage and select multiple thumbnails.
 - Add and manage video titles.
-- Ability to select your channel without login.
+- Ability to select your channel without logging in.
 
 ## Deployment
 

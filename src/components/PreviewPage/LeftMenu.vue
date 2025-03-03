@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import LeftMenuToggleButton from "@/components/ThumbnailPreviewPage/LeftMenuToggleButton.vue";
-import ThumbnailSection from "@/components/ThumbnailPreviewPage/ThumbnailSection.vue";
+import LeftMenuToggleButton from "@/components/PreviewPage/LeftMenuToggleButton.vue";
+import ThumbnailSection from "@/components/PreviewPage/ThumbnailSection.vue";
 import TitleSection from "@/views/TitleSection.vue";
 import YourChannelSection from "@/views/YourChannelSection.vue";
 import { mapGetters } from "vuex";

@@ -29,9 +29,9 @@
 
 <script>
 import { mapActions, mapGetters } from 'vuex';
-import UploadThumbnailButton from '@/components/ThumbnailPreviewPage/UploadThumbnailButton.vue';
-import UploadedThumbnail from '@/components/ThumbnailPreviewPage/UploadedThumbnail.vue';
-import SectionTitle from '@/components/SectionTitle.vue';
+import UploadThumbnailButton from '@/components/PreviewPage/UploadThumbnailButton.vue';
+import UploadedThumbnail from '@/components/PreviewPage/UploadedThumbnail.vue';
+import SectionTitle from '@/components/UI/SectionTitle.vue';
 
 export default {
     components: {

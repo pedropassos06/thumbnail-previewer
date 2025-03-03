@@ -7,7 +7,7 @@
 		@drop.prevent="onDrop"
 	>
 		<div class="drop-zone__content">
-		<img src="@/components/icons/import-icon.svg" alt="Upload Icon" class="upload-icon" />
+		<font-awesome-icon icon="fa-solid fa-arrow-up-from-bracket" class="drop-zone__icon" />
 		<h3 class="drop-zone-header">{{ header }}</h3>
 		<p class="drop-zone-subheader">{{ subheader }}</p>
 		<input
@@ -34,7 +34,8 @@
 
 
 <script>
-import ActionButton from "@/components/ActionButton.vue";
+import ActionButton from "@/components/UI/ActionButton.vue";
+import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { mapActions } from "vuex";
 
 export default {
@@ -154,8 +155,8 @@ export default {
 }
 
 .drop-zone__icon {
-	width: 40px;
-	height: 40px;
+	color: red;
+	font-size: 35px;
 	margin-bottom: 10px;
 }
 
