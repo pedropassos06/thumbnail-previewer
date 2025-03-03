@@ -55,14 +55,15 @@ src/
         main.css
         mock/
     components/
-        ActionButton.vue
-        AddTitleButton.vue
-        ConfirmationModal.vue
         icons/
-        InputBox.vue
         SectionTitle.vue
         PreviewPage/
         LandingPage/
+        UI/
+            ActionButton.vue
+            ConfirmationModal.vue
+            InputBox.vue
+            SectionTitle.vue
     main.js
     mock/
         mockVideos.js
