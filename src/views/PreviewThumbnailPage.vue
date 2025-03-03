@@ -8,7 +8,7 @@
 <script>
 import { mapGetters } from "vuex";
 import LeftMenu from "@/components/PreviewPage/LeftMenu.vue";
-import MainYoutubePage from "./MainYoutubePage.vue";
+import MainYoutubePage from "../components/PreviewPage/MainYoutubeSection.vue";
 
 export default {
     computed: {

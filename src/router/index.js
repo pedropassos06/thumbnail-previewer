@@ -11,7 +11,7 @@ const router = createRouter({
     {
       path: '/preview', 
       name: "Preview", 
-      component: () => import('../views/PreviewThumbnail.vue')
+      component: () => import('../views/PreviewThumbnailPage.vue')
     }
   ],
 })

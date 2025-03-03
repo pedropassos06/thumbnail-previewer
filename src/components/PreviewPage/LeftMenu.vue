@@ -10,8 +10,8 @@
 <script>
 import LeftMenuToggleButton from "@/components/PreviewPage/LeftMenuToggleButton.vue";
 import ThumbnailSection from "@/components/PreviewPage/ThumbnailSection.vue";
-import TitleSection from "@/views/TitleSection.vue";
-import YourChannelSection from "@/views/YourChannelSection.vue";
+import TitleSection from "@/components/PreviewPage/TitleSection.vue";
+import YourChannelSection from "@/components/PreviewPage/YourChannelSection.vue";
 import { mapGetters } from "vuex";
 
 export default {
