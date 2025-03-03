@@ -1,16 +1,14 @@
-# thumbnail-previewer
+# Thumbnail Previewer
 
-This template should help get you started developing with Vue 3 in Vite.
+This project is a web application that allows users to preview their YouTube thumbnails. It is built with Vue 3 and Vite and deployed through Vercel.
 
-## Recommended IDE Setup
+## Live Demo
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+You can access the live demo of the project here: [Thumbnail Previewer](https://thumbnail-previewer-three.vercel.app/).
 
-## Customize configuration
+## Installation & Setup
 
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
+### Install Dependencies
 
 ```sh
 npm install
@@ -27,3 +25,69 @@ npm run dev
 ```sh
 npm run build
 ```
+
+### Preview the Production Build
+
+```sh
+npm run preview
+```
+
+## Project Structure
+
+```
+.env
+.gitignore
+.vscode/
+    extensions.json
+    settings.json
+index.html
+jsconfig.json
+package.json
+public/
+    favicon.ico
+README.md
+src/
+    App.vue
+    assets/
+        base.css
+        logo-icon.png
+        logo.svg
+        main.css
+        mock/
+    components/
+        ActionButton.vue
+        AddTitleButton.vue
+        ConfirmationModal.vue
+        icons/
+        InputBox.vue
+        SectionTitle.vue
+        ThumbnailPreviewPage/
+        UploadThumbnailPage/
+    main.js
+    mock/
+        mockVideos.js
+    router/
+        index.js
+    store/
+        index.js
+        modules/
+    views/
+        ...
+vercel.json
+vite.config.js
+```
+
+## Features
+
+- Upload and preview YouTube thumbnails.
+- Manage and select multiple thumbnails.
+- Add and manage video titles.
+- Ability to select your channel without login.
+
+## Deployment
+
+This project is deployed using Vercel. The deployment configuration can be found in the `vercel.json` file.
+
+## License
+
+This project is licensed under the MIT License. See the `LICENSE` file for details.
