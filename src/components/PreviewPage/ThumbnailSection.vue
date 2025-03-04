@@ -1,5 +1,5 @@
 <template>
-    <div class="thumbnail-section">
+    <div class="w-full text-black">
         <SectionTitle>Thumbnails</SectionTitle>
         <input
             type="file"
@@ -10,10 +10,10 @@
             multiple
             hidden
         />
-        <div class="thumbnail-grid">
+        <div class="grid grid-cols-2 grid-rows-2 gap-2.5 w-full">
             <UploadThumbnailButton 
                 @click="openFileExplorer"
-                class="thumbnail-item"
+                class="aspect-[16/9] bg-gray-300 rounded-lg max-w-full"
             />
             <UploadedThumbnail
                 v-for="(thumbnail, index) in thumbnails"
@@ -21,7 +21,7 @@
                 :thumbnail="thumbnail"
                 :index="index"
                 :activeContextMenu="activeContextMenuIndex === index"
-                class="thumbnail-item"
+                class="aspect-[16/9] bg-gray-300 rounded-lg max-w-full"
             />
         </div>
     </div>
@@ -67,27 +67,3 @@ export default {
     },
 }
 </script>
-
-<style scoped>
-.thumbnail-section {
-    width: 100%;
-    color: black;
-}
-
-/* 2x2 grid layout */
-.thumbnail-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr); /* Two equal columns */
-    grid-template-rows: repeat(2, 1fr); /* Two equal rows */
-    gap: 10px;
-    width: 100%;
-}
-
-/* Ensures each thumbnail/button maintains a 16:9 aspect ratio */
-.thumbnail-item {
-    aspect-ratio: 16 / 9;
-    background: lightgray;
-    border-radius: 10px;
-    max-width: 100%;
-}
-</style>
