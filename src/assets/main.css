@@ -10,11 +10,5 @@ html, body, #app {
 }
 
 body {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 100%;
-  width: 100%; /* Full width of the viewport */
-  color: white;
-  font-family: 'Inter', sans-serif;
+  @apply flex items-center justify-center text-white font-sans;
 }
