@@ -1,15 +1,16 @@
 <template>
-    <div class="title-section">
+    <div class="w-full text-black">
         <SectionTitle>Titles</SectionTitle>
-        <div class="title-section-wrapper">
-            <div v-for="(_, index) in titles" class="title-record">
+        <div class="flex flex-col justify-center items-center gap-2.5">
+            <div v-for="(_, index) in titles" class="flex items-center w-full gap-2.5">
                 <InputBox v-model="titles[index].value" placeholder="Enter title..." :selected="titles[index].isSelected" @click="handleSelectTitle(index)"/>
-                <font-awesome-icon v-if="showDeleteButton" class="delete-title-icon" icon="fa-solid fa-trash" @click="handleDeleteTitle(index)"/>
+                <font-awesome-icon v-if="showDeleteButton" class="cursor-pointer text-gray-500 hover:text-red-500" icon="fa-solid fa-trash" @click="handleDeleteTitle(index)"/>
             </div>
             <ActionButton type="tertiary" @click="handleAddTitle"><font-awesome-icon class="plus-icon" icon="fa-solid fa-plus" /></ActionButton>
         </div>
     </div>
 </template>
+
 <script>
 import SectionTitle from '@/components/UI/SectionTitle.vue';
 import InputBox from '@/components/UI/InputBox.vue';
@@ -49,32 +50,3 @@ export default {
     }
 }
 </script>
-<style>
-.title-section {
-    width: 100%;
-    color: black;
-}
-
-.title-section-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-
-.title-record {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    width: 100%;
-}
-
-.delete-title-icon {
-    cursor: pointer;
-    color: #6f6f6f;
-    :hover {
-        color: red;
-    }
-}
-</style>
