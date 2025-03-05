@@ -1,5 +1,5 @@
 <template>
-    <div class="main-youtube-grid">
+    <div class="grid grid-cols-4 gap-x-2.5 gap-y-5 ">
         <YourYoutubeThumbnail />
         <FullYoutubeThumbnail v-for="video in mockVideos" :key="video.id" :video="video" />
     </div>
@@ -23,11 +23,3 @@ export default {
     },
 }
 </script>
-
-<style>
-.main-youtube-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 10px 20px;
-}
-</style>
