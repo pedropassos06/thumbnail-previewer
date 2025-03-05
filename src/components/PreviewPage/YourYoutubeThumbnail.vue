@@ -1,17 +1,19 @@
 <template>
-    <div class="video-thumbnail-component">
-        <div class="thumbnail-wrapper">
-            <img v-if="selectedThumbnail" :src="selectedThumbnail.url" class="video-thumbnail">
-            <img v-else :src="blankThumbnail" class="video-thumbnail">
-            <div class="video-duration">{{ videoDuration }}</div>
+    <div class="flex flex-col items-start gap-2.5">
+        <div class="relative w-full">
+            <img v-if="selectedThumbnail" :src="selectedThumbnail.url" class="aspect-[16/9] w-full rounded-[10px]">
+            <img v-else :src="blankThumbnail" class="aspect-[16/9] w-full rounded-[10px]">
+            <div class="absolute bottom-1.5 right-1.5 bg-black bg-opacity-80 text-white text-xs !font-bold px-1 py-1 rounded">
+                {{ videoDuration }}
+            </div>
         </div>
-        <div class="video-info-wrapper">
-            <img class="profile-picture" :src="profilePic">
-            <div class="video-info">
-                <h3 class="title">{{ selectedTitle }}</h3>
-                <div class="channel-name-and-video-info-container">
+        <div class="flex gap-2.5 items-start w-full">
+            <img class="w-10 h-10 rounded-full bg-gray-300" :src="profilePic">
+            <div class="flex flex-col w-full">
+                <h3 class="!font-bold w-full !text-wrap text-base">{{ selectedTitle }}</h3>
+                <div class="text-[15px] text-[#606060]">
                     <span>{{ channelName }}</span>
-                    <div class="video-analytics">
+                    <div class="flex gap-1">
                         <span>10K views</span>
                         <span> • </span>
                         <span>1 hour ago</span>
@@ -69,70 +71,3 @@ export default {
     },
 }
 </script>
-
-<style>
-.video-thumbnail-component {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-}
-
-.video-info-wrapper {
-    display: flex;
-    gap: 10px;
-    align-items: flex-start;
-    width: 100%;
-}
-
-.thumbnail-wrapper {
-    position: relative;
-    width: 100%;
-}
-
-.video-info {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-}
-
-.channel-name-and-video-info-container {
-    font-size: 0.90rem;
-    color: #606060;
-    font-weight: 500;
-}
-
-.title {
-    font-size: 1rem;
-    font-weight: bold;
-    width: 100%;
-    text-wrap: wrap;
-    text-decoration: none;
-    margin-bottom: 5px;
-}
-
-.video-thumbnail {
-    aspect-ratio: 16 / 9;
-    border-radius: 10px;
-    width: 100%;
-}
-
-.profile-picture {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    background: lightgray;
-}
-
-.video-duration {
-    position: absolute;
-    bottom: 10px;
-    right: 10px;
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    font-size: 12px;
-    font-weight: bold;
-    padding: 2px 5px;
-    border-radius: 4px;
-}
-</style>
