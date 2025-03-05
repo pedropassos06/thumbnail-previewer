@@ -1,25 +1,11 @@
 <template>
-    <div class="upload-thumbnail-button">
-        <p class="add-icon"><font-awesome-icon class="add-icon" icon="fa-solid fa-plus" /></p>
+    <div class="bg-[#D5D5D5] rounded-[10px] flex justify-center items-center cursor-pointer">
+        <p class="add-icon"><font-awesome-icon class="text-2xl text-[#6F6F6F]" icon="fa-solid fa-plus" /></p>
     </div>
 </template>
+
 <script>
 export default {
     name: "UploadThumbnailButton",
 }
 </script>
-<style>
-.upload-thumbnail-button {
-    background-color: #D5D5D5;
-    border-radius: 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-
-.add-icon {
-    font-size: 25px;
-    color: #6F6F6F;
-}
-</style>
