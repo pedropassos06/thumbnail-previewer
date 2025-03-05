@@ -10,19 +10,21 @@
             multiple
             hidden
         />
-        <div class="grid grid-cols-2 grid-rows-2 gap-2.5 w-full">
-            <UploadThumbnailButton 
-                @click="openFileExplorer"
-                class="aspect-[16/9] bg-gray-300 rounded-lg max-w-full"
-            />
-            <UploadedThumbnail
-                v-for="(thumbnail, index) in thumbnails"
-                :key="thumbnail.file.name"
-                :thumbnail="thumbnail"
-                :index="index"
-                :activeContextMenu="activeContextMenuIndex === index"
-                class="aspect-[16/9] bg-gray-300 rounded-lg max-w-full"
-            />
+        <div class="max-h-48 overflow-y-auto">
+            <div class="grid grid-cols-2 gap-2.5 w-full">
+                <UploadThumbnailButton 
+                    @click="openFileExplorer"
+                    class="aspect-[16/9] bg-gray-300 rounded-lg max-w-full"
+                />
+                <UploadedThumbnail
+                    v-for="(thumbnail, index) in thumbnails"
+                    :key="thumbnail.file.name"
+                    :thumbnail="thumbnail"
+                    :index="index"
+                    :activeContextMenu="activeContextMenuIndex === index"
+                    class="aspect-[16/9] bg-gray-300 rounded-lg max-w-full"
+                />
+            </div>
         </div>
     </div>
 </template>
