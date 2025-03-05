@@ -1,13 +1,13 @@
 <template>
-    <div class="w-full text-black">
+    <div class="w-full text-black flex flex-col gap-2.5">
         <SectionTitle>Titles</SectionTitle>
-        <div class="flex flex-col justify-center items-center gap-2.5">
-            <div v-for="(_, index) in titles" class="flex items-center w-full gap-2.5">
+        <div class="max-h-40 overflow-y-auto">
+            <div v-for="(_, index) in titles" class="flex items-center w-full">
                 <InputBox v-model="titles[index].value" placeholder="Enter title..." :selected="titles[index].isSelected" @click="handleSelectTitle(index)"/>
                 <font-awesome-icon v-if="showDeleteButton" class="cursor-pointer text-gray-500 hover:text-red-500" icon="fa-solid fa-trash" @click="handleDeleteTitle(index)"/>
             </div>
-            <ActionButton type="tertiary" @click="handleAddTitle"><font-awesome-icon class="plus-icon" icon="fa-solid fa-plus" /></ActionButton>
         </div>
+        <ActionButton type="tertiary" @click="handleAddTitle"><font-awesome-icon class="plus-icon" icon="fa-solid fa-plus" /></ActionButton>
     </div>
 </template>
 
