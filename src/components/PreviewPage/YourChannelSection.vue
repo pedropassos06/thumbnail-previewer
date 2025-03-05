@@ -1,7 +1,7 @@
 <template>
-    <div class="your-channel-section">
+    <div class="w-full text-black">
         <SectionTitle>Your Channel</SectionTitle>
-        <div class="your-channel-section-wrapper">
+        <div class="flex flex-col justify-center items-center gap-2.5">
             <InputBox type="text" placeholder="ex: @pedropassos_" v-model="channelHandle" />
             <ActionButton 
                 type="primary"
@@ -10,7 +10,7 @@
             >Search my channel</ActionButton>
         </div>
         <!-- Display message if too many requests are made -->
-        <div v-if="tooManyRequests" class="error-message">
+        <div v-if="tooManyRequests" class="p-1 text-red-600 text-[14px] !font-bold">
             You have reached the rate limit. Please try again later.
         </div>
     </div>
@@ -127,26 +127,3 @@ export default {
     },
 }
 </script>
-
-
-<style>
-.your-channel-section {
-    width: 100%;
-    color: black;
-}
-
-.your-channel-section-wrapper {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-}
-
-.error-message {
-    padding: 4px;
-    color: red;
-    font-size: 14px;
-    font-weight: bold;
-}
-</style>
