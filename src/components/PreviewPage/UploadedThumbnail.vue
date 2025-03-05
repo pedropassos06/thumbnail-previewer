@@ -1,18 +1,19 @@
 <template>
-    <div class="thumbnail-container" @contextmenu.prevent="openContextMenu($event)" @click="handleSelectThumbnail">
+    <div class="relative w-full h-full cursor-pointer" @contextmenu.prevent="openContextMenu($event)" @click="handleSelectThumbnail">
         <img 
-            class="uploaded-thumbnail"
-            :class="{ 'selected': thumbnail.isSelected }"
+            class="uploaded-thumbnail w-full h-full rounded-lg bg-gray-300 cursor-pointer" 
+            :class="{ 'border-2 border-red-500': thumbnail.isSelected }"
             :src="thumbnail.url" 
         />
         <div 
-            class="overlay"
+            class="absolute top-0 left-0 w-full h-full bg-black bg-opacity-30 rounded-lg border-4 border-red-500" 
             v-if="thumbnail.isSelected"
         />
         <p 
-            class="checkmark" 
-            v-if="thumbnail.isSelected" 
-        ><font-awesome-icon icon="fa-solid fa-check" />
+            class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-red-500 text-2xl font-bold" 
+            v-if="thumbnail.isSelected"
+        >
+            <font-awesome-icon icon="fa-solid fa-check" />
         </p>
         <confirmation-modal
             v-model="showModal"
@@ -25,11 +26,11 @@
 
         <!-- Context Menu -->
         <transition name="fade">
-            <div v-if="activeContextMenu" class="context-menu" :style="{ top: contextMenuY + 'px', left: contextMenuX + 'px' }" @click.stop>
-                <button @click="handleSelectThumbnail">
+            <div v-if="activeContextMenu" class="fixed bg-gray-700 rounded-lg shadow-md p-2 z-20 flex flex-col gap-1 opacity-95 min-w-[150px]" :style="{ top: contextMenuY + 'px', left: contextMenuX + 'px' }" @click.stop>
+                <button @click="handleSelectThumbnail" class="w-full text-white font-normal bg-transparent border-none py-2 px-3 cursor-pointer text-left rounded-lg flex items-center gap-2">
                     <font-awesome-icon icon="fa-solid fa-check" /> Select This Thumbnail
                 </button>
-                <button @click="handleOpenModal">
+                <button @click="handleOpenModal" class="w-full text-white font-normal bg-transparent border-none py-2 px-3 cursor-pointer text-left rounded-lg flex items-center gap-2 hover:bg-red-700">
                     <font-awesome-icon icon="fa-solid fa-trash" /> Delete Thumbnail
                 </button>
             </div>
@@ -99,81 +100,7 @@ export default {
 }
 </script>
 
-<style>
-.uploaded-thumbnail {
-    cursor: pointer;
-    background-color: #D5D5D5;
-    border-radius: 10px;
-    width: 100%;
-    height: 100%;
-}
-
-.uploaded-thumbnail.selected {
-    border: 2px solid red;
-}
-
-.thumbnail-container {
-    cursor: pointer;
-    position: relative;
-    width: 100%;
-    height: 100%;
-}
-
-.checkmark {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    color: red;
-    font-size: 2em;
-    font-weight: bold;
-}
-
-.overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 10px;
-    border: 4px solid red;
-}
-
-.context-menu {
-    position: fixed;
-    background: #595959;
-    border-radius: 6px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
-    padding: 4px;
-    z-index: 20;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    gap: 5px;
-    opacity: 0.95;
-    min-width: 150px;
-}
-
-.context-menu button {
-    width: 100%;
-    color: white;
-    font-weight: normal;
-    background: none;
-    border: none;
-    padding: 8px 10px;
-    cursor: pointer;
-    text-align: left;
-    border-radius: 6px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-}
-
-.context-menu button:hover {
-    background: rgba(255, 0, 0, 0.9);
-}
-
+<style scoped>
 /* Fade Animation */
 .fade-enter-active, .fade-leave-active {
     transition: opacity 0.2s ease-in-out;
