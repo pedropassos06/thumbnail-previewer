@@ -1,5 +1,5 @@
 <template>
-    <div class="left-menu">
+    <div class="flex flex-col justify-between items-center text-black border border-solid border-[#E6E7EA] rounded-[15px] px-5 py-10 w-full">
         <LeftMenuToggleButton />
         <ThumbnailSection :thumbnails="thumbnails" />
         <TitleSection />
@@ -30,17 +30,3 @@ export default {
     },
 }
 </script>
-
-<style>
-.left-menu {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    align-items: center;
-    color: black;
-    border: 1px solid #E6E7EA;
-    border-radius: 15px;
-    padding: 1.5%;
-    width: 100%;
-}
-</style>

@@ -1,15 +1,19 @@
 <template>
-    <div class="toggle-button-component">
+    <div class="flex justify-around items-center text-black rounded-full bg-[#E6E7EA] gap-2 w-full p-1 shadow-md">
         <p 
-            class="toggle-button"
-            :class="{ selected: selectedButton === BUTTON_TYPES.MAIN_PAGE }"
+            class="flex justify-center font-size-4.5 cursor-pointer p-2 w-full rounded-full transition-all duration-200"
+            :class="selectedButton === BUTTON_TYPES.MAIN_PAGE 
+                ? 'bg-red-500 text-white font-bold' 
+                : 'bg-transparent text-black'"
             @click="handleButtonClick(BUTTON_TYPES.MAIN_PAGE)"
         >
             Main Page
         </p>
         <p 
-            class="toggle-button"
-            :class="{ selected: selectedButton === BUTTON_TYPES.SEARCH }"
+            class="flex justify-center font-size-4.5 cursor-pointer p-2 w-full rounded-full transition-all duration-200"
+            :class="selectedButton === BUTTON_TYPES.SEARCH 
+                ? 'bg-red-500 text-white font-bold' 
+                : 'bg-transparent text-black'"
             @click="handleButtonClick(BUTTON_TYPES.SEARCH)"
         >
             Search
@@ -41,34 +45,3 @@ export default {
     },
 }
 </script>
-
-<style>
-.toggle-button-component {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    color: black;
-    border-radius: 100px;
-    background-color: #E6E7EA;
-    gap: 2%;
-    width: 100%;
-    padding: 1%;
-    filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.1));
-}
-
-.toggle-button {
-    display: flex;
-    justify-content: center;
-    font-size: 18px;
-    cursor: pointer;
-    padding: 2%;
-    width: 100%;
-    border-radius: 100px;
-}
-
-.toggle-button.selected {
-    background-color: red;
-    color: white;
-    font-weight: bold;
-}
-</style>
